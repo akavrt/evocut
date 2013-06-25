@@ -1,12 +1,12 @@
-evocut
-======
+EA-based solver for 1D SSSCSP
+=============================
 
 Solver for the 1D SSSCSP based on evolutionary algorithm.
 
 Based on the https://github.com/akavrt/csp
 
-Lately both solvers (for 1D SSSCSP and 1.5D MSSCSP) will be merged to create
-single multipurpose library.
+In future both solvers (for 1D SSSCSP and 1.5D MSSCSP) will be merged 
+into single multipurpose library.
 
 License
 -------
