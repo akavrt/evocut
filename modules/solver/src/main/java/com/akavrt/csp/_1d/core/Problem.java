@@ -1,6 +1,8 @@
 package com.akavrt.csp._1d.core;
 
 import com.google.common.collect.Lists;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
@@ -10,24 +12,41 @@ import java.util.List;
  * Time: 17:23
  */
 public class Problem {
+    private static final Logger LOGGER = LogManager.getLogger(Problem.class);
     private final List<Order> orders;
     private final int stockLength;
+    private final int totalOrderLength;
 
-    public Problem(int stockLength) {
+    public Problem(int stockLength, List<Order> orders) {
         this.stockLength = stockLength;
 
-        orders = Lists.newArrayList();
-    }
+        this.orders = Lists.newArrayList();
 
-    public int size() {
-        return orders.size();
+        for (Order order : orders) {
+            addOrder(order);
+        }
+
+        totalOrderLength = calculateTotalOrderLength();
     }
 
     public int getStockLength() {
         return stockLength;
     }
 
-    public void addOrder(Order order) {
+    public int size() {
+        return orders.size();
+    }
+
+    public Order getOrder(int index) {
+        return orders.get(index);
+    }
+
+    private void addOrder(Order order) {
+        if (order == null || !order.isValid()) {
+            LOGGER.warn("Incomplete order encountered.");
+            return;
+        }
+
         Order existing = null;
         for (int i = 0; i < orders.size(); i++) {
             if (orders.get(i).getLength() == order.getLength()) {
@@ -44,12 +63,17 @@ public class Problem {
         orders.add(order);
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    private int calculateTotalOrderLength() {
+        int result = 0;
+        for (Order order : orders) {
+            result += order.getLength() * order.getDemand();
+        }
+
+        return result;
     }
 
-    public Order getOrder(int index) {
-        return orders.get(index);
+    public int getTotalOrderLength() {
+        return totalOrderLength;
     }
 
 }

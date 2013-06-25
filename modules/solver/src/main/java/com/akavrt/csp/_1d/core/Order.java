@@ -21,4 +21,9 @@ public class Order {
     public int getDemand() {
         return demand;
     }
+
+    public boolean isValid() {
+        return length > 0 && demand > 0;
+    }
+
 }
