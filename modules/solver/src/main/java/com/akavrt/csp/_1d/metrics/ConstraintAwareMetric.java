@@ -70,7 +70,7 @@ public class ConstraintAwareMetric implements Metric {
 
     @Override
     public String abbreviation() {
-        return "SCALAR-X";
+        return "CONSTRAINED-OF";
     }
 
     @Override

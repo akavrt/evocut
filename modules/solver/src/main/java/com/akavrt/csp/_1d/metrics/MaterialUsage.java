@@ -5,23 +5,23 @@ import com.akavrt.csp._1d.core.Plan;
 /**
  * User: akavrt
  * Date: 26.06.13
- * Time: 01:25
+ * Time: 01:26
  */
-public class SetupsMetric extends MinimizationMetric {
+public class MaterialUsage extends MinimizationMetric {
 
     @Override
     public double evaluate(Plan plan) {
-        return plan.getSetups();
+        return plan.size();
     }
 
     @Override
     public String abbreviation() {
-        return "UP";
+        return "MU";
     }
 
     @Override
     public String name() {
-        return "Number of setups";
+        return "Total number of stock pieces used";
     }
 
 }

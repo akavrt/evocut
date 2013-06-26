@@ -107,4 +107,49 @@ public class PlanTest {
         assertEquals(0.5, plan.getPatternReductionRatio(), DELTA);
     }
 
+    @Test
+    public void equality() {
+        Plan first = new Plan(problem);
+        Plan second = new Plan(problem);
+
+        // empty plans
+        assertTrue(first.equals(second));
+
+        first.addPattern(new int[]{1, 0, 1});
+        second.addPattern(new int[]{1, 0, 1});
+
+        // 1st: [ 1 0 1 ] X 1
+        // 2nd: [ 1 0 1 ] X 1
+        assertTrue(first.equals(second));
+
+        first.addPattern(new int[]{1, 0, 1});
+
+        // 1st: [ 1 0 1 ] X 2
+        // 2nd: [ 1 0 1 ] X 1
+        assertFalse(first.equals(second));
+
+
+        second.addPattern(new int[]{1, 0, 1});
+
+        // 1st: [ 1 0 1 ] X 2
+        // 2nd: [ 1 0 1 ] X 2
+        assertTrue(first.equals(second));
+
+        first.addPattern(new int[]{1, 0, 0});
+        first.addPattern(new int[]{1, 1, 1}, 5);
+
+        second.addPattern(new int[]{1, 1, 1}, 3);
+        second.addPattern(new int[]{1, 1, 1});
+        second.addPattern(new int[]{1, 1, 1});
+        second.addPattern(new int[]{1, 0, 0});
+
+        // 1st: [ 1 0 0 ] X 1
+        //      [ 1 0 1 ] X 2
+        //      [ 1 1 1 ] X 5
+        // 1st: [ 1 0 0 ] X 1
+        //      [ 1 0 1 ] X 2
+        //      [ 1 1 1 ] X 5
+        assertTrue(first.equals(second));
+    }
+
 }

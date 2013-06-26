@@ -1,10 +1,12 @@
 package com.akavrt.csp._1d.core;
 
-import com.google.common.collect.Maps;
+import com.google.common.base.Objects;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * User: akavrt
@@ -19,7 +21,7 @@ public class Plan {
     public Plan(Problem problem) {
         this.problem = problem;
 
-        patterns = Maps.newLinkedHashMap();
+        patterns = new TreeMap<Pattern, Integer>();
     }
 
     public void addPattern(int[] cuts) {
@@ -103,6 +105,36 @@ public class Plan {
         }
 
         return ratio;
+    }
+
+    @Override
+    public int hashCode() {
+        if (patterns.size() == 0) {
+            return 0;
+        }
+
+        int[] hashes = new int[patterns.size()];
+        int i = 0;
+        for (Map.Entry<Pattern, Integer> each : patterns.entrySet()) {
+            hashes[i++] = Objects.hashCode(each.getKey(), each.getValue());
+        }
+
+        return Arrays.hashCode(hashes);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof Plan)) {
+            return false;
+        }
+
+        Plan rhs = (Plan) o;
+
+        return hashCode() == rhs.hashCode();
     }
 
 }

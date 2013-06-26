@@ -7,7 +7,7 @@ import java.util.Arrays;
  * Date: 25.06.13
  * Time: 22:44
  */
-public class Pattern {
+public class Pattern implements Comparable<Pattern> {
     private final int[] cuts;
 
     public Pattern(int[] cuts) {
@@ -36,5 +36,17 @@ public class Pattern {
         Pattern rhs = (Pattern) o;
 
         return hashCode() == rhs.hashCode();
+    }
+
+    @Override
+    public int compareTo(Pattern rhs) {
+        if (rhs == null) {
+            return -1;
+        }
+
+        int lhsHash = hashCode();
+        int rhsHash = rhs.hashCode();
+
+        return lhsHash == rhsHash ? 0 : (lhsHash < rhsHash ? -1 : 1);
     }
 }
