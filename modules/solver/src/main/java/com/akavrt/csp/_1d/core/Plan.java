@@ -137,4 +137,55 @@ public class Plan {
         return hashCode() == rhs.hashCode();
     }
 
+    @Override
+    public String toString() {
+        int maxCuts = 0;
+        int maxMult = 0;
+        for (Map.Entry<Pattern, Integer> each : patterns.entrySet()) {
+            int multiplier = each.getValue();
+            if (maxMult == 0 || maxMult < multiplier) {
+                maxMult = multiplier;
+            }
+
+            int[] cuts = each.getKey().getCuts();
+            for (int i = 0; i < cuts.length; i++) {
+                if (maxCuts == 0 || maxCuts < cuts[i]) {
+                    maxCuts = cuts[i];
+                }
+            }
+        }
+
+        int indexDigits = (int) Math.log10(patterns.size()) + 1;
+        int cutsDigits = (int) Math.log10(maxCuts) + 1;
+        int multDigits = (int) Math.log10(maxMult) + 1;
+
+        String indexFormat = "\n    #%" + indexDigits + "d:  [";
+        String cutsFormat = " %" + cutsDigits + "d";
+        String multFormat = " ]  X  %" + multDigits + "d";
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("SOLUTION: ");
+        builder.append(isFeasible() ? "feasible" : "infeasible");
+        int i = 0;
+        for (Map.Entry<Pattern, Integer> each : patterns.entrySet()) {
+            builder.append(String.format(indexFormat, ++i));
+
+            int[] cuts = each.getKey().getCuts();
+            for (int j = 0; j < cuts.length; j++) {
+                builder.append(String.format(cutsFormat, cuts[j]));
+            }
+
+            builder.append(String.format(multFormat, each.getValue()));
+        }
+
+        builder.append("\nANALYSIS: ");
+        builder.append("\n  Residual demands: " + getResidualDemand());
+        builder.append("\n    Material usage: " + size() + " stock pieces");
+        builder.append("\n     Setups needed: " + getSetups());
+        builder.append("\n        Trim ratio: " + String.format("%.2f%%",
+                                                                  100 * getMaterialWasteRatio()));
+
+        return builder.toString();
+    }
+
 }

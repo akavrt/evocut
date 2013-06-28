@@ -76,4 +76,41 @@ public class Problem {
         return totalOrderLength;
     }
 
+    public int getLowerBound() {
+        return (int) Math.ceil(totalOrderLength / (double) stockLength);
+    }
+
+    @Override
+    public String toString() {
+        int maxLength = 0;
+        int maxDemand = 0;
+        for (Order order : orders) {
+            if (maxLength == 0 || maxLength < order.getLength()) {
+                maxLength = order.getLength();
+            }
+
+            if (maxDemand == 0 || maxDemand < order.getDemand()) {
+                maxDemand = order.getDemand();
+            }
+        }
+
+        int indexDigits = (int) Math.log10(orders.size()) + 1;
+        int lengthDigits = (int) Math.log10(maxLength) + 1;
+        int demandDigits = (int) Math.log10(maxDemand) + 1;
+
+        String format = "\n  #%" + indexDigits + "d:  %" + lengthDigits + "d  X  %" +
+                demandDigits + "d";
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("\nPROBLEM:  m = " + orders.size() + "  L = " + stockLength + "  LB = " +
+                               getLowerBound());
+        builder.append("\n  ORDERS, (l_i  x  d_i):");
+        for (int i = 0; i < orders.size(); i++) {
+            Order order = orders.get(i);
+            builder.append(String.format(format, i + 1, order.getLength(), order.getDemand()));
+        }
+
+        return builder.toString();
+    }
+
 }

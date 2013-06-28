@@ -1,5 +1,6 @@
 package com.akavrt.csp._1d.utils;
 
+import com.akavrt.csp._1d.xml.XmlCompatible;
 import org.jdom2.Element;
 
 /**

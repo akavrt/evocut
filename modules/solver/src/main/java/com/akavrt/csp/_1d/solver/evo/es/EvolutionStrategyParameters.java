@@ -1,7 +1,7 @@
 package com.akavrt.csp._1d.solver.evo.es;
 
 import com.akavrt.csp._1d.solver.evo.EvolutionaryAlgorithmParameters;
-import com.akavrt.csp._1d.utils.XmlUtils;
+import com.akavrt.csp._1d.xml.XmlUtils;
 import org.jdom2.Element;
 
 /**
