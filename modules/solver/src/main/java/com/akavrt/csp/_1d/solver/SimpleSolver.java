@@ -48,7 +48,7 @@ public class SimpleSolver implements Solver {
         this.problem = problem;
     }
 
-    protected Algorithm getAlgorithm() {
+    public Algorithm getAlgorithm() {
         return algorithm;
     }
 

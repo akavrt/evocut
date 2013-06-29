@@ -1,6 +1,7 @@
 package com.akavrt.csp._1d.solver;
 
 import com.akavrt.csp._1d.cutgen.ProblemDescriptors;
+import com.akavrt.csp._1d.cutgen.PseudoRandom;
 import com.akavrt.csp._1d.utils.Utils;
 import com.akavrt.csp._1d.xml.XmlCompatible;
 import com.akavrt.csp._1d.xml.XmlUtils;
@@ -11,24 +12,34 @@ import org.jdom2.Element;
  * Date: 28.06.13
  * Time: 01:36
  */
-public class ClassDescriptors implements XmlCompatible {
+public class ProblemClass implements XmlCompatible {
     private ProblemDescriptors problemDescriptors;
     private int size;
+    private int seed;
     private String name;
     private String description;
 
-    public ClassDescriptors(ProblemDescriptors problemDescriptors, int size) {
-        this(problemDescriptors, size, null, null);
+    public ProblemClass(Element element) {
+        load(element);
     }
 
-    public ClassDescriptors(ProblemDescriptors problemDescriptors, int size, String name) {
-        this(problemDescriptors, size, name, null);
+    public ProblemClass(int size, ProblemDescriptors problemDescriptors) {
+        this(size, problemDescriptors, PseudoRandom.DEFAULT_SEED, null, null);
     }
 
-    public ClassDescriptors(ProblemDescriptors problemDescriptors, int size,
-                            String name, String description) {
-        this.problemDescriptors = problemDescriptors;
+    public ProblemClass(int size, ProblemDescriptors problemDescriptors, int seed) {
+        this(size, problemDescriptors, seed, null, null);
+    }
+
+    public ProblemClass(int size, ProblemDescriptors problemDescriptors, int seed, String name) {
+        this(size, problemDescriptors, seed, name, null);
+    }
+
+    public ProblemClass(int size, ProblemDescriptors problemDescriptors, int seed, String name,
+                        String description) {
         this.size = size;
+        this.problemDescriptors = problemDescriptors;
+        this.seed = seed;
         this.name = name;
         this.description = description;
     }
@@ -43,6 +54,10 @@ public class ClassDescriptors implements XmlCompatible {
      */
     public int getSize() {
         return size;
+    }
+
+    public int getSeed() {
+        return seed;
     }
 
     public String getName() {
@@ -60,6 +75,10 @@ public class ClassDescriptors implements XmlCompatible {
         Element sizeElm = new Element(XmlTags.CLASS_SIZE);
         sizeElm.setText(Integer.toString(size));
         classElm.addContent(sizeElm);
+
+        Element seedElm = new Element(XmlTags.SEED);
+        seedElm.setText(Integer.toString(seed));
+        classElm.addContent(seedElm);
 
         if (problemDescriptors != null) {
             Element descriptorsElm = problemDescriptors.save();
@@ -87,7 +106,12 @@ public class ClassDescriptors implements XmlCompatible {
     public void load(Element rootElm) {
         Element classSizeElm = rootElm.getChild(XmlTags.CLASS_SIZE);
         if (classSizeElm != null) {
-            size = XmlUtils.getIntegerFromText(classSizeElm, 0);
+            size = XmlUtils.getIntegerFromText(classSizeElm, 1);
+        }
+
+        Element seedElm = rootElm.getChild(XmlTags.SEED);
+        if (seedElm != null) {
+            seed = XmlUtils.getIntegerFromText(seedElm, PseudoRandom.DEFAULT_SEED);
         }
 
         name = rootElm.getChildText(XmlTags.NAME);
@@ -102,6 +126,7 @@ public class ClassDescriptors implements XmlCompatible {
     private interface XmlTags {
         String CLASS = "class";
         String CLASS_SIZE = "class-size";
+        String SEED = "seed";
         String NAME = "name";
         String DESCRIPTION = "description";
         String DESCRIPTORS = "descriptors";

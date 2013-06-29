@@ -16,7 +16,7 @@ package com.akavrt.csp._1d.cutgen;
  * @author Victor Balabanov <akavrt@gmail.com>
  */
 public class PseudoRandom {
-    private static final int DEFAULT_SEED = 2013;
+    public static final int DEFAULT_SEED = 2013;
     private final static int IA = 16807;
     private final static int IM = 2147483647;
     private final static int IQ = 127773;

@@ -3,6 +3,7 @@ package com.akavrt.csp._1d.analyzer.xml;
 import com.akavrt.csp._1d.core.Plan;
 import com.akavrt.csp._1d.core.Problem;
 import com.akavrt.csp._1d.solver.Algorithm;
+import com.akavrt.csp._1d.solver.ProblemClass;
 import com.akavrt.csp._1d.utils.ParameterSet;
 import com.akavrt.csp._1d.xml.XmlUtils;
 import com.akavrt.csp._1d.xml.XmlWriter;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 public class RunResultWriter extends XmlWriter {
     private Problem problem;
+    private ProblemClass problemClass;
     private List<Plan> solutions;
     private Algorithm algorithm;
     private int numberOfExecutions;
@@ -41,6 +43,15 @@ public class RunResultWriter extends XmlWriter {
      */
     public void setProblem(Problem problem) {
         this.problem = problem;
+    }
+
+    /**
+     * <p>Set description of the problem class which will be converted to XML.</p>
+     *
+     * @param problemClass The ProblemClass to convert.
+     */
+    public void setProblemClass(ProblemClass problemClass) {
+        this.problemClass = problemClass;
     }
 
     /**
@@ -128,6 +139,11 @@ public class RunResultWriter extends XmlWriter {
         dateElm.setText(XmlUtils.formatDate(new Date()));
         runElm.addContent(dateElm);
 
+        if (problemClass != null) {
+            Element problemClassElm = problemClass.save();
+            runElm.addContent(problemClassElm);
+        }
+
         if (algorithm != null) {
             Element methodElm = new Element(XmlTags.METHOD);
             runElm.addContent(methodElm);
@@ -175,7 +191,6 @@ public class RunResultWriter extends XmlWriter {
         Element rootElm = new Element(XmlTags.RESULTS);
         rootElm.addContent(runElm);
 
-        // TODO store in XML only problem descriptors
         if (problem != null) {
             /*
             CspWriter cspWriter = new CspWriter();
