@@ -4,7 +4,7 @@ import com.akavrt.csp._1d.core.Order;
 
 public class MutableOrder {
     private final Order order;
-    private int produced;
+    private int actualDemand;
 
     public MutableOrder(Order order) {
         this.order = order;
@@ -14,24 +14,20 @@ public class MutableOrder {
         return order;
     }
 
-    public int getProduced() {
-        return produced;
+    public int getActualDemand() {
+        return actualDemand;
     }
 
-    public void addProduced(int produced) {
-        this.produced += produced;
+    public void updateDemand(int produced) {
+        this.actualDemand += produced;
     }
 
     public boolean isFulfilled() {
-        return produced >= order.getDemand();
+        return actualDemand >= order.getDemand();
     }
 
     public int getUnfulfilledDemand() {
-        return isFulfilled() ? 0 : order.getDemand() - produced;
-    }
-
-    public int getUnfulfilledLength() {
-        return getUnfulfilledDemand() * order.getLength();
+        return isFulfilled() ? 0 : (order.getDemand() - actualDemand);
     }
 
 }

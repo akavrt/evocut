@@ -1,6 +1,8 @@
 package com.akavrt.csp._1d.solver.pattern;
 
 import com.akavrt.csp._1d.core.Problem;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -15,6 +17,7 @@ import java.util.Random;
  * @author Victor Balabanov <akavrt@gmail.com>
  */
 public class UnconstrainedPatternGenerator implements PatternGenerator {
+    private static final Logger LOGGER = LogManager.getLogger(UnconstrainedPatternGenerator.class);
     private final Random rGen;
     private int [] lengths;
     private int stockLength;
@@ -65,57 +68,56 @@ public class UnconstrainedPatternGenerator implements PatternGenerator {
     @Override
     public int[] generate(int[] demand, double allowedTrimRatio) {
         if (lengths == null) {
+            LOGGER.warn("Trying to use uninitialized pattern generator.");
             return null;
         }
 
-        int totalItems = 0;
-        int totalWidth = 0;
-        int minUnfulfilledLength = 0;
+        int totalLength = 0;
         for (int i = 0; i < lengths.length; i++) {
-            totalItems += demand[i];
-            totalWidth += lengths[i] * demand[i];
-
-            if ((minUnfulfilledLength == 0 || lengths[i] < minUnfulfilledLength) && demand[i] > 0) {
-                minUnfulfilledLength = lengths[i];
-            }
+            totalLength += lengths[i] * demand[i];
         }
 
-        if (minUnfulfilledLength == 0 || totalItems == 0) {
+        if (totalLength == 0) {
+            LOGGER.warn("Trying to generate pattern for zero demand.");
             return null;
         }
 
-        // check whether simple greedy placement is possible
-        if (totalWidth <= stockLength) {
-            // use greedy placement
-            greedyPlacement(demand);
-        } else {
-            // use randomized generation procedure
-            int trialCounter = 0;
-            int bestTrim = stockLength;
-            int allowedTrim = (int) (stockLength * allowedTrimRatio);
-
-            do {
-                trial(demand, totalItems);
-
-                // if new pattern is better than the current best,
-                // replace latter one with new pattern
-                if (getCurrentTrim() < bestTrim) {
-                    bestTrim = getCurrentTrim();
-
-                    int[] generatedPattern = getCurrentPattern();
-                    System.arraycopy(generatedPattern, 0, bestPattern, 0, bestPattern.length);
-                }
-
-                trialCounter++;
-            }
-            while (trialCounter < params.getGenerationTrialsLimit() && bestTrim > allowedTrim);
-        }
-
-        return bestPattern.clone();
+        return totalLength <= stockLength ? greedy(demand) : search(demand, allowedTrimRatio);
     }
 
-    private void greedyPlacement(int[] demand) {
-        bestPattern = demand.clone();
+    private int[] greedy(int[] demand) {
+        // use greedy placement
+        return demand.clone();
+    }
+
+    private int[] search(int[] demand, double allowedTrimRatio) {
+        // use randomized generation procedure
+        int totalItems = 0;
+        for (int i = 0; i < lengths.length; i++) {
+            totalItems += demand[i];
+        }
+
+        int trialCounter = 0;
+        int bestTrim = stockLength;
+        int allowedTrim = (int) (stockLength * allowedTrimRatio);
+
+        do {
+            trial(demand, totalItems);
+
+            // if new pattern is better than the current best,
+            // replace latter one with new pattern
+            if (getCurrentTrim() < bestTrim) {
+                bestTrim = getCurrentTrim();
+
+                int[] generatedPattern = getCurrentPattern();
+                System.arraycopy(generatedPattern, 0, bestPattern, 0, bestPattern.length);
+            }
+
+            trialCounter++;
+        }
+        while (trialCounter < params.getGenerationTrialsLimit() && bestTrim > allowedTrim);
+
+        return bestPattern.clone();
     }
 
     private void trial(int[] demand, int totalItems) {
@@ -172,4 +174,5 @@ public class UnconstrainedPatternGenerator implements PatternGenerator {
     private void setCurrentPattern(int[] pattern) {
         this.currPattern = pattern;
     }
+
 }

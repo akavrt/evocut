@@ -157,7 +157,9 @@ public class RunResultWriter extends XmlWriter {
                 methodElm.addContent(parametersElm);
 
                 for (ParameterSet parameters : algorithm.getParameters()) {
-                    parametersElm.addContent(parameters.save());
+                    if (parameters != null) {
+                        parametersElm.addContent(parameters.save());
+                    }
                 }
             }
         }

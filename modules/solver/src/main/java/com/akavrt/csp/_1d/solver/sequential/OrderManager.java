@@ -22,35 +22,15 @@ public class OrderManager {
         }
     }
 
-    public int getUnfulfilledOrdersLength() {
-        int length = 0;
+    public int getMaxUnfulfilledDemand() {
+        int maxDemand = 0;
         for (MutableOrder order : orders) {
-            length += order.getUnfulfilledLength();
-        }
-
-        return length;
-    }
-
-    public int[] calcGroupDemand(int multiplier) {
-        if (multiplier == 0) {
-            return null;
-        }
-
-        int[] demand = new int[orders.size()];
-        for (int i = 0; i < orders.size(); i++) {
-            MutableOrder order = orders.get(i);
-            if (!order.isFulfilled()) {
-                demand[i] = order.getUnfulfilledDemand() / multiplier;
-
-                // rounding multiplier up is allowed only if size of the group equals to one
-                // this rule is used to implicitly control overproduction
-                if (multiplier == 1 && demand[i] == 0) {
-                    demand[i] = 1;
-                }
+            if (maxDemand == 0 || order.getUnfulfilledDemand() > maxDemand) {
+                maxDemand = order.getUnfulfilledDemand();
             }
         }
 
-        return demand;
+        return maxDemand;
     }
 
     public int getPatternLength(int[] pattern) {
@@ -83,13 +63,35 @@ public class OrderManager {
         return isFulfilled;
     }
 
-    public void updateProduction(int[] pattern, int multiplier) {
+    public int[] calculateDemand(int multiplier) {
+        if (multiplier == 0) {
+            return null;
+        }
+
+        int[] demand = new int[orders.size()];
+        for (int i = 0; i < orders.size(); i++) {
+            MutableOrder order = orders.get(i);
+            if (!order.isFulfilled()) {
+                demand[i] = order.getUnfulfilledDemand() / multiplier;
+
+                // rounding multiplier up is allowed only if size of the group equals to one
+                // this rule is used to implicitly control overproduction
+                if (multiplier == 1 && demand[i] == 0) {
+                    demand[i] = 1;
+                }
+            }
+        }
+
+        return demand;
+    }
+
+    public void updateDemand(int[] pattern, int multiplier) {
         if (pattern == null) {
             return;
         }
 
         for (int i = 0; i < orders.size(); i++) {
-            orders.get(i).addProduced(multiplier * pattern[i]);
+            orders.get(i).updateDemand(pattern[i] * multiplier);
         }
     }
 

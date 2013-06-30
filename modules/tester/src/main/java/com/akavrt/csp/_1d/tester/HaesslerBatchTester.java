@@ -3,6 +3,7 @@ package com.akavrt.csp._1d.tester;
 import com.akavrt.csp._1d.solver.Algorithm;
 import com.akavrt.csp._1d.solver.pattern.PatternGenerator;
 import com.akavrt.csp._1d.solver.pattern.PatternGeneratorParameters;
+import com.akavrt.csp._1d.solver.pattern.PierceGenerator;
 import com.akavrt.csp._1d.solver.pattern.UnconstrainedPatternGenerator;
 import com.akavrt.csp._1d.solver.sequential.HaesslerProcedure;
 import com.akavrt.csp._1d.solver.sequential.SequentialProcedureParameters;
@@ -47,7 +48,8 @@ public class HaesslerBatchTester extends BatchTester {
 
     @Override
     protected Algorithm createAlgorithm() {
-        PatternGenerator generator = createPatternGenerator();
+//        PatternGenerator generator = createPatternGenerator();
+        PatternGenerator generator = new PierceGenerator();
 
         SequentialProcedureParameters procedureParameters = config.getAlgorithmParameters();
         if (procedureParameters == null) {

@@ -10,8 +10,6 @@ import com.akavrt.csp._1d.solver.SimpleSolver;
 import com.akavrt.csp._1d.solver.pattern.PatternGenerator;
 import com.akavrt.csp._1d.solver.pattern.UnconstrainedPatternGenerator;
 import com.akavrt.csp._1d.solver.sequential.HaesslerProcedure;
-import com.akavrt.csp._1d.solver.sequential.SimplifiedProcedure;
-import com.akavrt.csp._1d.solver.sequential.VahrenkampProcedure;
 
 import java.util.List;
 
@@ -31,7 +29,7 @@ public class SequentialTester {
         System.out.println(problem);
 
         PatternGenerator generator = new UnconstrainedPatternGenerator();
-        Algorithm algorithm = new VahrenkampProcedure(generator);
+        Algorithm algorithm = new HaesslerProcedure(generator);
 
         SimpleSolver solver = new SimpleSolver(problem, algorithm);
 

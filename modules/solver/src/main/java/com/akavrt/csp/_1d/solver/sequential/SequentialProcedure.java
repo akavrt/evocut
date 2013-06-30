@@ -63,24 +63,21 @@ public abstract class SequentialProcedure implements Algorithm {
     }
 
     protected int evaluatePatternUsage() {
-        // calculate total length of order items yet to be produced
-        int ordersLength = orderManager.getUnfulfilledOrdersLength();
-
         // let's evaluate maximum possible pattern usage
         // sometimes we need to restrict pattern usage,
         // this is done using corresponding parameter defined as fractional ratio:
         // for ratio = 1.0 schedule all unfulfilled orders,
         // for ratio = 0.5 schedule only one half of the unfulfilled orders, etc.
         double upperBoundRatio = getMethodParameters().getPatternUsageUpperBound();
-        int stockLength = context.getProblem().getStockLength();
+        int evaluated = (int) (upperBoundRatio * orderManager.getMaxUnfulfilledDemand());
 
-        return (int) Math.ceil(upperBoundRatio * ordersLength / (double) stockLength);
+        return Math.max(1, evaluated);
     }
 
     protected BuildingBlock patternGeneration(double allowedTrimRatio, int patternUsage) {
         BuildingBlock block = null;
 
-        int[] demand = orderManager.calcGroupDemand(patternUsage);
+        int[] demand = orderManager.calculateDemand(patternUsage);
 
         int[] pattern = patternGenerator.generate(demand, allowedTrimRatio);
         if (pattern != null && orderManager.getPatternTrimRatio(pattern) <= allowedTrimRatio) {

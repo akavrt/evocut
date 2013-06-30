@@ -6,9 +6,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class HaesslerProcedure extends SequentialProcedure {
+    private static final Logger LOGGER = LogManager.getFormatterLogger(HaesslerProcedure.class);
     private static final String METHOD_NAME = "Haessler's sequential heuristic procedure";
     private static final String SHORT_METHOD_NAME = "Haessler's SHP";
-    private static final Logger LOGGER = LogManager.getFormatterLogger(HaesslerProcedure.class);
     private final SequentialProcedureParameters params;
 
     public HaesslerProcedure(PatternGenerator generator) {
@@ -48,7 +48,7 @@ public class HaesslerProcedure extends SequentialProcedure {
 
             if (block != null) {
                 // adjust production
-                orderManager.updateProduction(block.pattern, block.multiplier);
+                orderManager.updateDemand(block.pattern, block.multiplier);
 
                 // add pattern to the partial solution
                 solution.addPattern(block.pattern, block.multiplier);
@@ -63,6 +63,8 @@ public class HaesslerProcedure extends SequentialProcedure {
 
         double allowedTrimRatio = params.getTrimRatioLowerBound();
 
+        // TODO potential problem in case when min(l_i) <= params.getTrimRatioRelaxStep() * L
+        // TODO at the end ot the run we may stuck while searching for the right pattern
         while (!context.isCancelled() && allowedTrimRatio < 1 && block == null) {
             LOGGER.debug("#TRIM_AL: %.2f", allowedTrimRatio);
 

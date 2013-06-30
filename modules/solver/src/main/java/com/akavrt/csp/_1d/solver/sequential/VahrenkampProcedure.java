@@ -61,7 +61,7 @@ public class VahrenkampProcedure extends SequentialProcedure {
 
             if (block != null) {
                 // adjust production and stock
-                orderManager.updateProduction(block.pattern, block.multiplier);
+                orderManager.updateDemand(block.pattern, block.multiplier);
 
                 // add pattern to the partial solution
                 solution.addPattern(block.pattern, block.multiplier);
