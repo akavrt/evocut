@@ -56,14 +56,6 @@ public class ProblemClassProcessor {
         writeResults(globalCollector, parentPath, end - start);
     }
 
-    private File createResultsFile(String parentPath) {
-        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.ENGLISH);
-        String fileName = String.format(FILE_NAME_FORMAT,
-                                        problemClass.getName(), dateFormat.format(new Date()));
-
-        return new File(parentPath, fileName);
-    }
-
     private boolean writeResults(XmlEnabledCollector globalCollector, String parentPath,
                                  long totalProcessTimeInMillis) {
         File resultsFile = createResultsFile(parentPath);
@@ -89,5 +81,12 @@ public class ProblemClassProcessor {
         return true;
     }
 
+    private File createResultsFile(String parentPath) {
+        DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.ENGLISH);
+        String fileName = String.format(FILE_NAME_FORMAT,
+                                        problemClass.getName(), dateFormat.format(new Date()));
+
+        return new File(parentPath, fileName);
+    }
 
 }

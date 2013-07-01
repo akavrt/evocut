@@ -1,4 +1,4 @@
-package com.akavrt.csp._1d.tester;
+package com.akavrt.csp._1d.tester.batch;
 
 import com.akavrt.csp._1d.analyzer.Average;
 import com.akavrt.csp._1d.analyzer.xml.XmlEnabledCollector;
