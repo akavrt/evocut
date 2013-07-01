@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>Java port of the CUTGEN1 - problem generator for one-dimensional single stock size cutting
+ * <p>Java port of the CUTGEN1 - problem generator for one-dimensional single stock getMaterialUsage cutting
  * stock problem (1D SSSCSP) developed by Gau and Wascher (1995).</p>
  *
  * <p>This is a direct port to Java of the original CUTGEN1 procedure written in Fortran. The
@@ -40,7 +40,7 @@ public class ProblemGenerator {
     /**
      * <p>Generates problem instance with predefined characteristics.</p>
      *
-     * <p>As stated in Gau and Wascher (1995), the actual size of the problem instance doesn't
+     * <p>As stated in Gau and Wascher (1995), the actual getMaterialUsage of the problem instance doesn't
      * necessarily equals to ProblemDescriptors.getSize(), because the possibility exists that
      * identical order lengths may be generated. Demands of identical order lengths are summed
      * up.</p>

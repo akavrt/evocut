@@ -80,7 +80,7 @@ public class EvolutionStrategyParameters extends EvolutionaryAlgorithmParameters
         String STRATEGY = "strategy";
         String POPULATION_SIZE = "mu";
         String OFFSPRING_COUNT = "lambda";
-        String TOUR_SIZE = "tour-size";
+        String TOUR_SIZE = "tour-getMaterialUsage";
     }
 
 }

@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 /**
@@ -22,6 +23,22 @@ public class Plan {
         this.problem = problem;
 
         patterns = new TreeMap<Pattern, Integer>();
+    }
+
+    /**
+     * <p>Copy constructor.</p>
+     *
+     * @param plan Plan to be copied.
+     */
+    public Plan(Plan plan) {
+        this(plan.problem);
+
+        for (Map.Entry<Pattern,Integer> each : plan.patterns.entrySet()) {
+            Pattern pattern = new Pattern(each.getKey());
+            int multiplier = each.getValue();
+
+            patterns.put(pattern, multiplier);
+        }
     }
 
     public void addPattern(int[] cuts) {
@@ -52,11 +69,15 @@ public class Plan {
         patterns.put(pattern, multiplier);
     }
 
+    public int size() {
+        return patterns.size();
+    }
+
     public int getSetups() {
         return patterns.size();
     }
 
-    public int size() {
+    public int getMaterialUsage() {
         int result = 0;
         for (Integer multiplier : patterns.values()) {
             result += multiplier;
@@ -65,7 +86,7 @@ public class Plan {
         return result;
     }
 
-    public int getResidualDemand() {
+    public int getTotalResidualDemand() {
         int[] produced = new int[problem.size()];
         for (Map.Entry<Pattern, Integer> patternEntry : patterns.entrySet()) {
             int[] cuts = patternEntry.getKey().getCuts();
@@ -86,20 +107,38 @@ public class Plan {
     }
 
     public boolean isFeasible() {
-        return getResidualDemand() == 0;
+        return getTotalResidualDemand() == 0;
     }
 
     public double getMaterialWasteRatio() {
         double useful = problem.getTotalOrderLength();
-        double used = problem.getStockLength() * size();
+        double used = problem.getStockLength() * getMaterialUsage();
 
         return 1 - useful / used;
+    }
+
+    public double getTrimRatio() {
+        int trim = 0;
+        for (Map.Entry<Pattern, Integer> patternEntry : patterns.entrySet()) {
+            int[] cuts = patternEntry.getKey().getCuts();
+            int multiplier = patternEntry.getValue();
+            int patternLength = 0;
+            for (int i = 0; i < problem.size(); i++) {
+                patternLength += cuts[i] * problem.getOrder(i).getLength();
+            }
+
+            trim += (problem.getStockLength() - patternLength) * multiplier;
+        }
+
+        double used = problem.getStockLength() * getMaterialUsage();
+
+        return trim / used;
     }
 
     public double getPatternReductionRatio() {
         double ratio = 0;
 
-        int size = size();
+        int size = getMaterialUsage();
         if (size > 1) {
             ratio = (getSetups() - 1) / (double) (size - 1);
         }
@@ -179,13 +218,96 @@ public class Plan {
         }
 
         builder.append("\nANALYSIS: ");
-        builder.append("\n  Residual demands: " + getResidualDemand());
-        builder.append("\n    Material usage: " + size() + " stock pieces");
+        builder.append("\n  Residual demands: " + getTotalResidualDemand());
+        builder.append("\n    Material usage: " + getMaterialUsage() + " stock pieces");
         builder.append("\n     Setups needed: " + getSetups());
         builder.append("\n        Trim ratio: " + String.format("%.2f%%",
                                                                   100 * getMaterialWasteRatio()));
 
         return builder.toString();
+    }
+
+    /**
+     * <p>Rather ugly solution, definitely should be revised.</p>
+     *
+     */
+    public Pattern pickPattern(Random random) {
+        if (patterns.size() == 0) {
+            return null;
+        }
+
+        // maybe com.google.common.collect.Iterables.get(Iterable<T> iterable, int position)
+        // would be a better choice?
+        Pattern pick = null;
+        int i = 0;
+        int target = random.nextInt(patterns.size());
+        for (Pattern pattern : patterns.keySet()) {
+            if (i == target) {
+                pick = pattern;
+                break;
+            }
+
+            i++;
+        }
+
+        return pick;
+    }
+
+    public int getMultiplier(Pattern pattern) {
+        Integer multiplier = patterns.get(pattern);
+
+        return multiplier == null ? 0 : multiplier;
+    }
+
+    public int removePattern(Pattern pattern) {
+        Integer multiplier = patterns.remove(pattern);
+
+        return multiplier == null ? 0 : multiplier;
+    }
+
+    public int[] getResidualDemand() {
+        int[] produced = new int[problem.size()];
+        for (Map.Entry<Pattern, Integer> each : patterns.entrySet()) {
+            int[] cuts = each.getKey().getCuts();
+            int multiplier = each.getValue();
+            for (int i = 0; i < problem.size(); i++) {
+                produced[i] += cuts[i] * multiplier;
+            }
+        }
+
+        int[] residual = new int[problem.size()];
+        for (int i = 0; i < problem.size(); i++) {
+            if (problem.getOrder(i).getDemand() > produced[i]) {
+                residual[i] = problem.getOrder(i).getDemand() - produced[i];
+            }
+        }
+
+        return residual;
+    }
+
+    public int getResidualDemandLength() {
+        int[] produced = new int[problem.size()];
+        for (Map.Entry<Pattern, Integer> each : patterns.entrySet()) {
+            int[] cuts = each.getKey().getCuts();
+            int multiplier = each.getValue();
+            for (int i = 0; i < problem.size(); i++) {
+                produced[i] += cuts[i] * multiplier;
+            }
+        }
+
+        int residualLength = 0;
+        for (int i = 0; i < problem.size(); i++) {
+            int residualDemand = problem.getOrder(i).getDemand() - produced[i];
+            if (residualDemand > 0) {
+                residualLength += residualDemand * problem.getOrder(i).getLength();
+            }
+        }
+
+        return residualLength;
+    }
+
+    public int getStockLength() {
+        return problem.getStockLength();
     }
 
 }

@@ -3,8 +3,9 @@ package com.akavrt.csp._1d.solver.evo.es;
 import com.akavrt.csp._1d.solver.Algorithm;
 import com.akavrt.csp._1d.solver.evo.EvolutionaryComponentsFactory;
 import com.akavrt.csp._1d.solver.evo.EvolutionaryOperator;
-import com.akavrt.csp._1d.solver.evo.operators.CompositeMutation;
+import com.akavrt.csp._1d.solver.evo.operators.*;
 import com.akavrt.csp._1d.solver.pattern.PatternGenerator;
+import com.akavrt.csp._1d.solver.sequential.SimplifiedProcedure;
 
 /**
  * User: akavrt
@@ -29,20 +30,16 @@ public class BaseStrategyComponentsFactory  implements EvolutionaryComponentsFac
     }
 
     protected void prepareMutationOperator(CompositeMutation mutation) {
-/*
-        mutation.addOperator(new AddRollMutation(patternGenerator));
-        mutation.addOperator(new ReplaceRollMutation());
-        mutation.addOperator(new DeleteRollMutation(patternGenerator));
-        mutation.addOperator(new AdaptGroupMutation(patternGenerator));
-        mutation.addOperator(new ReplaceGroupMutation(patternGenerator));
-        mutation.addOperator(new MergeTwoGroupsMutation(patternGenerator));
-*/
+        mutation.addOperator(new IncrementMultiplierMutation(patternGenerator));
+        mutation.addOperator(new DecrementMultiplierMutation(patternGenerator));
+        mutation.addOperator(new AdaptPatternMutation(patternGenerator));
+        mutation.addOperator(new AdaptMultiplierMutation(patternGenerator));
+        mutation.addOperator(new MergePatternsMutation(patternGenerator));
     }
 
     @Override
     public Algorithm createInitializationProcedure() {
-        return null;
-//        return new SimplifiedProcedure(patternGenerator);
+        return new SimplifiedProcedure(patternGenerator);
     }
 
 }

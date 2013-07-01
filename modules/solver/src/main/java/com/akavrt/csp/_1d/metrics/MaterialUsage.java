@@ -11,7 +11,7 @@ public class MaterialUsage extends MinimizationMetric {
 
     @Override
     public double evaluate(Plan plan) {
-        return plan.size();
+        return plan.getMaterialUsage();
     }
 
     @Override

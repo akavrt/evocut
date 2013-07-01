@@ -29,8 +29,8 @@ public class ConstraintAwareMetric implements Metric {
 
     @Override
     public int compare(Plan p1, Plan p2) {
-        int p1ResidualDemand = p1.getResidualDemand();
-        int p2ResidualDemand = p2.getResidualDemand();
+        int p1ResidualDemand = p1.getTotalResidualDemand();
+        int p2ResidualDemand = p2.getTotalResidualDemand();
 
         int result;
         if (p1ResidualDemand == 0 && p2ResidualDemand == 0) {

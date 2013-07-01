@@ -54,7 +54,7 @@ public class ProblemDescriptors implements XmlCompatible {
     }
 
     /**
-     * <p>Standard size of the stock items available in an unlimited supply.</p>
+     * <p>Standard getMaterialUsage of the stock items available in an unlimited supply.</p>
      *
      * <p>In notation taken by Gau and Wascher (1995): L.</p>
      *
@@ -65,21 +65,21 @@ public class ProblemDescriptors implements XmlCompatible {
     }
 
     /**
-     * <p>Lower bound for the relative size of order lengths in relation to the standard size of
+     * <p>Lower bound for the relative getMaterialUsage of order lengths in relation to the standard getMaterialUsage of
      * the stock items.</p>
      *
      * <p>In notation taken by Gau and Wascher (1995): v_1.</p>
      *
      * <p>l_i >= v_1 * L for all i = 1, ..., m, where l_i - length of the i-th order.</p>
      *
-     * @return Lower bound for the relative size of order lengths specified as a fractional ratio.
+     * @return Lower bound for the relative getMaterialUsage of order lengths specified as a fractional ratio.
      */
     public double getOrderLengthLowerBound() {
         return orderLengthLowerBound;
     }
 
     /**
-     * <p>Upper bound for the relative size of order lengths in relation to the standard size of
+     * <p>Upper bound for the relative getMaterialUsage of order lengths in relation to the standard getMaterialUsage of
      * the stock items.</p>
      *
      * <p>In notation taken by Gau and Wascher (1995): v_2.</p>
@@ -88,7 +88,7 @@ public class ProblemDescriptors implements XmlCompatible {
      *
      * <p>0 < v_1 < v_2 <= 1.</p>
      *
-     * @return Upper bound for the relative size of order lengths specified as a fractional ratio.
+     * @return Upper bound for the relative getMaterialUsage of order lengths specified as a fractional ratio.
      */
     public double getOrderLengthUpperBound() {
         return orderLengthUpperBound;
@@ -171,7 +171,7 @@ public class ProblemDescriptors implements XmlCompatible {
 
     private interface XmlTags {
         String DESCRIPTORS = "descriptors";
-        String PROBLEM_SIZE = "problem-size";
+        String PROBLEM_SIZE = "problem-getMaterialUsage";
         String STOCK_LENGTH = "stock-length";
         String ORDER_LENGTH_LOWER_BOUND = "order-length-lb";
         String ORDER_LENGTH_UPPER_BOUND = "order-length-ub";

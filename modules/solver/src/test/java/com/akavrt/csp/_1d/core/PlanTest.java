@@ -43,21 +43,21 @@ public class PlanTest {
 
         // empty plan
         assertFalse(infeasible.isFeasible());
-        assertEquals(40, infeasible.getResidualDemand());
+        assertEquals(40, infeasible.getTotalResidualDemand());
 
         infeasible.addPattern(new int[]{1, 0, 0}, 9);
         infeasible.addPattern(new int[]{0, 1, 0}, 9);
         infeasible.addPattern(new int[]{0, 0, 1}, 19);
 
         assertFalse(infeasible.isFeasible());
-        assertEquals(3, infeasible.getResidualDemand());
+        assertEquals(3, infeasible.getTotalResidualDemand());
 
         infeasible.addPattern(new int[]{1, 0, 0}, 1);
         infeasible.addPattern(new int[]{0, 1, 0}, 1);
         infeasible.addPattern(new int[]{0, 0, 1}, 1);
 
         assertTrue(infeasible.isFeasible());
-        assertEquals(0, infeasible.getResidualDemand());
+        assertEquals(0, infeasible.getTotalResidualDemand());
 
         // excessive production doesn't
         // lead to negative residual demands
@@ -66,7 +66,7 @@ public class PlanTest {
         infeasible.addPattern(new int[]{0, 0, 1}, 1);
 
         assertTrue(infeasible.isFeasible());
-        assertEquals(0, infeasible.getResidualDemand());
+        assertEquals(0, infeasible.getTotalResidualDemand());
     }
 
     @Test
@@ -150,6 +150,22 @@ public class PlanTest {
         //      [ 1 0 1 ] X 2
         //      [ 1 1 1 ] X 5
         assertTrue(first.equals(second));
+    }
+
+    @Test
+    public void multiplierRetrieval() {
+        Plan plan = new Plan(problem);
+
+        int[] cuts = new int[]{1, 0, 1};
+        Pattern firstInstance = new Pattern(cuts);
+        plan.addPattern(cuts, 4);
+
+        Pattern secondInstance = new Pattern(new int[]{1, 0, 1});
+        assertEquals(4, plan.getMultiplier(firstInstance));
+        assertEquals(4, plan.getMultiplier(secondInstance));
+
+        Pattern inactive = new Pattern(new int[] {1, 1, 1});
+        assertEquals(0, plan.getMultiplier(inactive));
     }
 
 }

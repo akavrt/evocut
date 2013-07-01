@@ -71,7 +71,7 @@ public class ModStrategyPopulation extends DiversePopulation {
         if (LOGGER.isDebugEnabled()) {
             double groupLength = 0;
             for (Plan chromosome : chromosomes) {
-                groupLength += chromosome.size() / (double) chromosome.getSetups();
+                groupLength += chromosome.getMaterialUsage() / (double) chromosome.getSetups();
             }
 
             String formatted = String.format("%.2f", groupLength / chromosomes.size());

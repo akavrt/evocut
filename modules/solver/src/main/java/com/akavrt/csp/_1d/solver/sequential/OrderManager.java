@@ -74,7 +74,7 @@ public class OrderManager {
             if (!order.isFulfilled()) {
                 demand[i] = order.getUnfulfilledDemand() / multiplier;
 
-                // rounding multiplier up is allowed only if size of the group equals to one
+                // rounding multiplier up is allowed only if getMaterialUsage of the group equals to one
                 // this rule is used to implicitly control overproduction
                 if (multiplier == 1 && demand[i] == 0) {
                     demand[i] = 1;

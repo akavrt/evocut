@@ -125,7 +125,7 @@ public class ProblemClass implements XmlCompatible {
 
     private interface XmlTags {
         String CLASS = "class";
-        String CLASS_SIZE = "class-size";
+        String CLASS_SIZE = "class-getMaterialUsage";
         String SEED = "seed";
         String NAME = "name";
         String DESCRIPTION = "description";

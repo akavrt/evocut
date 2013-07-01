@@ -14,6 +14,15 @@ public class Pattern implements Comparable<Pattern> {
         this.cuts = cuts;
     }
 
+    /**
+     * <p>Copy constructor.</p>
+     *
+     * @param pattern Pattern to be copied.
+     */
+    public Pattern(Pattern pattern) {
+        this.cuts = pattern.cuts.clone();
+    }
+
     public int[] getCuts() {
         return cuts;
     }
