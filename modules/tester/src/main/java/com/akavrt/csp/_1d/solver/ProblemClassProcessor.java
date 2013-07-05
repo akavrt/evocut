@@ -25,9 +25,9 @@ public class ProblemClassProcessor {
     private final MultistartSolver solver;
     private final ProblemClass problemClass;
 
-    public ProblemClassProcessor(MultistartSolver solver, ProblemClass classDescriptors) {
+    public ProblemClassProcessor(MultistartSolver solver, ProblemClass problemClass) {
         this.solver = solver;
-        this.problemClass = classDescriptors;
+        this.problemClass = problemClass;
     }
 
     public void process(XmlEnabledCollector globalCollector, String parentPath) {

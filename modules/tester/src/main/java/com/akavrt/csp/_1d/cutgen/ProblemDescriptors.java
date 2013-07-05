@@ -171,7 +171,7 @@ public class ProblemDescriptors implements XmlCompatible {
 
     private interface XmlTags {
         String DESCRIPTORS = "descriptors";
-        String PROBLEM_SIZE = "problem-getMaterialUsage";
+        String PROBLEM_SIZE = "problem-size";
         String STOCK_LENGTH = "stock-length";
         String ORDER_LENGTH_LOWER_BOUND = "order-length-lb";
         String ORDER_LENGTH_UPPER_BOUND = "order-length-ub";

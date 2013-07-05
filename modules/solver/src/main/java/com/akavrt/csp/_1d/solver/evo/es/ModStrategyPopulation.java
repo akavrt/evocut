@@ -70,18 +70,25 @@ public class ModStrategyPopulation extends DiversePopulation {
 
         if (LOGGER.isDebugEnabled()) {
             double groupLength = 0;
+            int feasible = 0;
             for (Plan chromosome : chromosomes) {
                 groupLength += chromosome.getMaterialUsage() / (double) chromosome.getSetups();
+
+                if (chromosome.isFeasible()) {
+                    feasible++;
+                }
             }
 
             String formatted = String.format("%.2f", groupLength / chromosomes.size());
             LOGGER.debug("Generation #{}, average group length is {}.", getAge(), formatted);
+            LOGGER.debug("Generation #{}, {} feasible of {} total solutions.",
+                         getAge(), feasible, chromosomes.size());
         }
     }
 
     private List<Plan> prepareExchange(List<Plan> exchangeList,
-                                             EvolutionaryOperator mutation,
-                                             DiversityManager dm) {
+                                       EvolutionaryOperator mutation,
+                                       DiversityManager dm) {
         for (int i = 0; i < exchangeList.size(); i++) {
             // pick chromosome from the exchange list and apply mutation to it,
             // then replace original chromosome with mutated one in the exchange list

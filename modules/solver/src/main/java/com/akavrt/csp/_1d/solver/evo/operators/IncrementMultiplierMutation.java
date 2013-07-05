@@ -32,7 +32,7 @@ public class IncrementMultiplierMutation extends Mutation {
         // pick pattern randomly
         Pattern pattern = mutated.pickPattern(rGen);
         if (pattern == null) {
-            LOGGER.warn("Failed to randomly pick pattern.");
+            LOGGER.debug("Failed to randomly pick pattern.");
             return mutated;
         }
 

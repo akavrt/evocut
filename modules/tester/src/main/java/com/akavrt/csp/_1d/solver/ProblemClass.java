@@ -72,19 +72,6 @@ public class ProblemClass implements XmlCompatible {
     public Element save() {
         Element classElm = new Element(XmlTags.CLASS);
 
-        Element sizeElm = new Element(XmlTags.CLASS_SIZE);
-        sizeElm.setText(Integer.toString(size));
-        classElm.addContent(sizeElm);
-
-        Element seedElm = new Element(XmlTags.SEED);
-        seedElm.setText(Integer.toString(seed));
-        classElm.addContent(seedElm);
-
-        if (problemDescriptors != null) {
-            Element descriptorsElm = problemDescriptors.save();
-            classElm.addContent(descriptorsElm);
-        }
-
         // optional name
         if (!Utils.isEmpty(name)) {
             Element nameElm = new Element(XmlTags.NAME);
@@ -97,6 +84,19 @@ public class ProblemClass implements XmlCompatible {
             Element descriptionElm = new Element(XmlTags.DESCRIPTION);
             descriptionElm.setText(description);
             classElm.addContent(descriptionElm);
+        }
+
+        Element sizeElm = new Element(XmlTags.CLASS_SIZE);
+        sizeElm.setText(Integer.toString(size));
+        classElm.addContent(sizeElm);
+
+        Element seedElm = new Element(XmlTags.SEED);
+        seedElm.setText(Integer.toString(seed));
+        classElm.addContent(seedElm);
+
+        if (problemDescriptors != null) {
+            Element descriptorsElm = problemDescriptors.save();
+            classElm.addContent(descriptorsElm);
         }
 
         return classElm;
@@ -125,7 +125,7 @@ public class ProblemClass implements XmlCompatible {
 
     private interface XmlTags {
         String CLASS = "class";
-        String CLASS_SIZE = "class-getMaterialUsage";
+        String CLASS_SIZE = "class-size";
         String SEED = "seed";
         String NAME = "name";
         String DESCRIPTION = "description";

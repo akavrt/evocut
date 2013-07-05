@@ -9,16 +9,15 @@ import com.akavrt.csp._1d.metrics.ConstraintAwareMetric;
 import com.akavrt.csp._1d.metrics.ConstraintAwareMetricParameters;
 import com.akavrt.csp._1d.metrics.Metric;
 import com.akavrt.csp._1d.solver.Algorithm;
-import com.akavrt.csp._1d.solver.SimpleSolver;
-import com.akavrt.csp._1d.solver.evo.EvolutionaryComponentsFactory;
-import com.akavrt.csp._1d.solver.evo.es.BaseStrategyComponentsFactory;
+import com.akavrt.csp._1d.solver.MultistartSolver;
 import com.akavrt.csp._1d.solver.evo.es.EvolutionStrategy;
 import com.akavrt.csp._1d.solver.evo.es.EvolutionStrategyParameters;
 import com.akavrt.csp._1d.solver.pattern.PatternGenerator;
 import com.akavrt.csp._1d.solver.pattern.PatternGeneratorParameters;
 import com.akavrt.csp._1d.solver.pattern.UnconstrainedPatternGenerator;
-
-import java.util.List;
+import com.akavrt.csp._1d.solver.sequential.HaesslerProcedure;
+import com.akavrt.csp._1d.solver.sequential.VahrenkampProcedure;
+import com.akavrt.csp._1d.solver.sequential.VahrenkampProcedureParameters;
 
 /**
  * User: akavrt
@@ -26,6 +25,7 @@ import java.util.List;
  * Time: 00:52
  */
 public class StrategyTester {
+    private TraceableStrategyComponentsFactory factory;
 
     public static void main(String[] args) {
         new StrategyTester().run();
@@ -35,37 +35,46 @@ public class StrategyTester {
         Problem problem = generateProblem();
         System.out.println(problem);
 
-        Algorithm algorithm = createAlgorithm();
-        SimpleSolver solver = new SimpleSolver(problem, algorithm);
+        Metric objective = createMetric();
 
-        List<Plan> plans = solver.solve();
+        Algorithm algorithm = createAlgorithm(objective);
 
-        if (plans.size() > 0 && plans.get(0) != null) {
+        MultistartSolver solver = new MultistartSolver(problem, algorithm, 10);
+
+        solver.solve();
+
+        Plan best = solver.getBestPlan(objective);
+        if (best != null) {
             // trace solution
-            System.out.println(plans.get(0));
+            System.out.println(best);
         }
+
+        factory.traceMutation();
     }
 
-    private Algorithm createAlgorithm() {
-        PatternGeneratorParameters patternParameters = new PatternGeneratorParameters();
-        patternParameters.setGenerationTrialsLimit(5);
-        PatternGenerator generator = new UnconstrainedPatternGenerator(patternParameters);
-
+    private Metric createMetric() {
         ConstraintAwareMetricParameters objectiveParameters = new ConstraintAwareMetricParameters();
         objectiveParameters.setAggregatedTrimFactor(0.1);
         objectiveParameters.setPatternsFactor(0.9);
         Metric objectiveFunction = new ConstraintAwareMetric(objectiveParameters);
 
-        EvolutionaryComponentsFactory factory = new BaseStrategyComponentsFactory(generator);
+        return objectiveFunction;
+    }
+
+    private Algorithm createAlgorithm(Metric objectiveFunction) {
+        PatternGeneratorParameters patternParameters = new PatternGeneratorParameters();
+        patternParameters.setGenerationTrialsLimit(5);
+        PatternGenerator generator = new UnconstrainedPatternGenerator(patternParameters);
+
+        factory = new TraceableStrategyComponentsFactory(generator, objectiveFunction);
 
         EvolutionStrategyParameters strategyParameters = new EvolutionStrategyParameters();
         strategyParameters.setPopulationSize(50);
         strategyParameters.setOffspringCount(45);
-        strategyParameters.setRunSteps(5000);
+        strategyParameters.setRunSteps(10000);
 
         return new EvolutionStrategy(factory, objectiveFunction, strategyParameters);
     }
-
 
     private Problem generateProblem() {
         ProblemDescriptors descriptors = new ProblemDescriptors(40, 1000, 0.2, 0.8, 100);
@@ -75,4 +84,5 @@ public class StrategyTester {
 
         return pGen.nextProblem();
     }
+
 }

@@ -32,17 +32,14 @@ public class AdaptMultiplierMutation extends Mutation {
         // pick pattern randomly
         Pattern pattern = mutated.pickPattern(rGen);
         if (pattern == null) {
-            LOGGER.warn("Failed to randomly pick pattern.");
+            LOGGER.debug("Failed to randomly pick pattern.");
             return mutated;
         }
 
         mutated.removePattern(pattern);
 
-        // calculate new multiplier as a lower bound for residual problem
-        // TODO use more tight lower bound
-        int residualDemandLength = mutated.getResidualDemandLength();
-        double stockLength = mutated.getStockLength();
-        int multiplier = (int) Math.ceil(residualDemandLength / stockLength);
+        // calculate new multiplier as an upper bound for residual problem
+        int multiplier = calculateUpperBound(mutated);
 
         int[] demand = calculateDemand(mutated, multiplier);
         int[] cuts = generator.generate(demand, toleranceRatio);

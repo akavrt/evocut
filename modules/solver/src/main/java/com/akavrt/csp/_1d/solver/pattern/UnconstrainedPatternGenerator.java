@@ -78,7 +78,7 @@ public class UnconstrainedPatternGenerator implements PatternGenerator {
         }
 
         if (totalLength == 0) {
-            LOGGER.warn("Trying to generate pattern for zero demand.");
+            LOGGER.debug("Trying to generate pattern for zero demand.");
             return null;
         }
 

@@ -41,13 +41,13 @@ public abstract class BatchTester {
     public void process() {
         File batchFile = new File(batchFilePath);
         if (!batchFile.exists() || !batchFile.isFile()) {
-            getLogger().info("Batch file '{}' wasn't found.", batchFilePath);
+            getLogger().warn("Batch file '{}' wasn't found.", batchFilePath);
             return;
         }
 
         List<ProblemClass> batch = read(batchFile);
         if (batch.size() == 0) {
-            getLogger().info("Batch is empty.");
+            getLogger().warn("Batch is empty.");
         }
 
         Algorithm method = createAlgorithm();
@@ -55,8 +55,8 @@ public abstract class BatchTester {
 
         XmlEnabledCollector globalCollector = createGlobalCollector();
         String parentPath = batchFile.getParent();
-        for (ProblemClass descriptors : batch) {
-            ProblemClassProcessor processor = new ProblemClassProcessor(solver, descriptors);
+        for (ProblemClass problemClass : batch) {
+            ProblemClassProcessor processor = new ProblemClassProcessor(solver, problemClass);
             processor.process(globalCollector, parentPath);
         }
     }

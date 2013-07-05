@@ -41,5 +41,14 @@ public abstract class Mutation implements EvolutionaryOperator {
         return Math.min(1.1 * trimRatio, 1);
     }
 
+    protected int calculateUpperBound(Plan chromosome) {
+        int residualDemandLength = chromosome.getResidualDemandLength();
+        double stockLength = chromosome.getStockLength();
+        int naiveLowerBound = (int) Math.ceil(residualDemandLength / stockLength);
+
+        int upperBound = (int) Math.ceil((11 * naiveLowerBound + 6) / 9.0);
+
+        return upperBound;
+    }
 
 }
