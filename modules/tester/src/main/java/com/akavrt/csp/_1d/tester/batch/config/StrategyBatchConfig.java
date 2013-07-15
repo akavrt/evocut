@@ -104,4 +104,5 @@ public class StrategyBatchConfig extends BatchConfig {
     public ConstraintAwareMetricParameters getObjectiveFunctionParameters() {
         return constrainedMetricParameters;
     }
+
 }

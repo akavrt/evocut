@@ -13,7 +13,7 @@ import com.akavrt.csp._1d.solver.sequential.SimplifiedProcedure;
  * Time: 13:40
  */
 public class BaseStrategyComponentsFactory implements EvolutionaryComponentsFactory {
-    private final PatternGenerator patternGenerator;
+    protected final PatternGenerator patternGenerator;
 
     public BaseStrategyComponentsFactory(PatternGenerator generator) {
         this.patternGenerator = generator;
@@ -34,11 +34,7 @@ public class BaseStrategyComponentsFactory implements EvolutionaryComponentsFact
         mutation.addOperator(new DecrementMultiplierMutation(patternGenerator));
         mutation.addOperator(new AdaptPatternMutation(patternGenerator));
         mutation.addOperator(new AdaptMultiplierMutation(patternGenerator));
-        mutation.addOperator(new MergePatternsMutation(patternGenerator, 2, 10));
-
-        //        mutation.addOperator(new MergePatternsMutation(patternGenerator, 3));
-        //        mutation.addOperator(new MergePatternsMutation(patternGenerator, 3));
-        //        mutation.addOperator(new MergePatternsMutation(patternGenerator, 4));
+        mutation.addOperator(new MergePatternsMutation(patternGenerator, 2, 2));
     }
 
     @Override

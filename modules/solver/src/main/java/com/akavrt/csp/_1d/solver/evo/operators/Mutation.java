@@ -15,11 +15,13 @@ import java.util.Random;
 public abstract class Mutation implements EvolutionaryOperator {
     protected final PatternGenerator generator;
     protected final Random rGen;
+    private final UpperBoundHelper ubHelper;
 
     public Mutation(PatternGenerator generator) {
         this.generator = generator;
 
         rGen = new Random();
+        ubHelper = new UpperBoundHelper();
     }
 
     @Override
@@ -39,6 +41,8 @@ public abstract class Mutation implements EvolutionaryOperator {
     protected double calculateLengthToleranceRatio(Plan chromosome) {
         double trimRatio = chromosome.getTrimRatio();
         return Math.min(1.1 * trimRatio, 1);
+
+//        return 0;
     }
 
     protected int calculateUpperBound(Plan chromosome) {
@@ -50,5 +54,11 @@ public abstract class Mutation implements EvolutionaryOperator {
 
         return upperBound;
     }
+
+    /*
+    protected int calculateUpperBound(Plan chromosome) {
+        return ubHelper.compute(chromosome);
+    }
+    */
 
 }

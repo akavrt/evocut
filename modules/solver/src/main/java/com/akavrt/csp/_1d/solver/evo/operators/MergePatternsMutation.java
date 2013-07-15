@@ -54,7 +54,7 @@ public class MergePatternsMutation extends Mutation {
 
         if (bound > 2 && !mutated.isFeasible()) {
             // lets try to compensate feasibility loss
-            // with additional pattern
+            // with additional patterns
 
             int additionalPatterns = 0;
             int additionalPatternsBound = bound - 2;

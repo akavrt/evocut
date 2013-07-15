@@ -53,7 +53,7 @@ public class MultistartSolver extends SimpleSolver {
         List<Plan> solutions = Lists.newArrayList();
 
         for (int i = 1; i <= numberOfRuns; i++) {
-            LOGGER.info("*** run #{}", i);
+            LOGGER.debug("*** run #{}", i);
 
             long start = System.currentTimeMillis();
             List<Plan> runResult = super.run();

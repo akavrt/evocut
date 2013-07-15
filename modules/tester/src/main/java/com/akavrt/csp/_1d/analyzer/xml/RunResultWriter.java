@@ -152,7 +152,7 @@ public class RunResultWriter extends XmlWriter {
             nameElm.setText(algorithm.name());
             methodElm.addContent(nameElm);
 
-            if (algorithm.getParameters().size() > 0) {
+            if (algorithm.getParameters() != null && algorithm.getParameters().size() > 0) {
                 Element parametersElm = new Element(XmlTags.PARAMETERS);
                 methodElm.addContent(parametersElm);
 

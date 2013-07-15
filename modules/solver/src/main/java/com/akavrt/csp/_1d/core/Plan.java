@@ -5,10 +5,7 @@ import com.google.common.collect.Iterables;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * User: akavrt
@@ -58,6 +55,10 @@ public class Plan {
         return problem.getStockLength();
     }
 
+    public Problem getProblem() {
+        return problem;
+    }
+
     public int size() {
         return patterns.size();
     }
@@ -75,8 +76,14 @@ public class Plan {
     }
 
     public void addPattern(int[] cuts, int multiplier) {
-        if (cuts == null || cuts.length != problem.size()) {
-            LOGGER.warn("Incompatible pattern encountered.");
+        if (cuts == null) {
+            LOGGER.warn("Incompatible pattern encountered: cuts array is null");
+            return;
+        }
+
+        if (cuts.length != problem.size()) {
+            LOGGER.warn("Incompatible pattern encountered: cuts.length is {}, problem.size() is {}",
+                        cuts.length, problem.size());
             return;
         }
 
@@ -85,8 +92,14 @@ public class Plan {
             length += cuts[i] * problem.getOrder(i).getLength();
         }
 
-        if (length == 0 || length > problem.getStockLength()) {
-            LOGGER.warn("Inactive or infeasible pattern encountered.");
+        if (length == 0) {
+            LOGGER.debug("Inactive pattern encountered.");
+            return;
+        }
+
+        if (length > problem.getStockLength()) {
+            LOGGER.warn("Infeasible pattern encountered with length {} exceeds stock length of {}.",
+                        length, problem.getStockLength());
             return;
         }
 
@@ -130,6 +143,10 @@ public class Plan {
         int index = random.nextInt(patterns.size());
 
         return Iterables.get(patterns.keySet(), index);
+    }
+
+    public Set<Map.Entry<Pattern, Integer>> getPatterns() {
+        return patterns.entrySet();
     }
 
     public int getMaterialUsage() {
