@@ -34,7 +34,7 @@ public class BaseStrategyComponentsFactory implements EvolutionaryComponentsFact
         mutation.addOperator(new DecrementMultiplierMutation(patternGenerator));
         mutation.addOperator(new AdaptPatternMutation(patternGenerator));
         mutation.addOperator(new AdaptMultiplierMutation(patternGenerator));
-        mutation.addOperator(new MergePatternsMutation(patternGenerator, 2, 2));
+        mutation.addOperator(new MergePatternsMutation(patternGenerator, 2, 10));
     }
 
     @Override

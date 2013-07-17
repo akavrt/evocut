@@ -15,9 +15,6 @@ import com.akavrt.csp._1d.solver.evo.es.EvolutionStrategyParameters;
 import com.akavrt.csp._1d.solver.pattern.PatternGenerator;
 import com.akavrt.csp._1d.solver.pattern.PatternGeneratorParameters;
 import com.akavrt.csp._1d.solver.pattern.UnconstrainedPatternGenerator;
-import com.akavrt.csp._1d.solver.sequential.HaesslerProcedure;
-import com.akavrt.csp._1d.solver.sequential.VahrenkampProcedure;
-import com.akavrt.csp._1d.solver.sequential.VahrenkampProcedureParameters;
 
 /**
  * User: akavrt
@@ -54,8 +51,8 @@ public class StrategyTester {
 
     private Metric createMetric() {
         ConstraintAwareMetricParameters objectiveParameters = new ConstraintAwareMetricParameters();
-        objectiveParameters.setAggregatedTrimFactor(0.1);
-        objectiveParameters.setPatternsFactor(0.9);
+        objectiveParameters.setAggregatedTrimFactor(0.9);
+        objectiveParameters.setPatternsFactor(0.1);
         Metric objectiveFunction = new ConstraintAwareMetric(objectiveParameters);
 
         return objectiveFunction;
@@ -71,13 +68,13 @@ public class StrategyTester {
         EvolutionStrategyParameters strategyParameters = new EvolutionStrategyParameters();
         strategyParameters.setPopulationSize(50);
         strategyParameters.setOffspringCount(45);
-        strategyParameters.setRunSteps(10000);
+        strategyParameters.setRunSteps(2000);
 
         return new EvolutionStrategy(factory, objectiveFunction, strategyParameters);
     }
 
     private Problem generateProblem() {
-        ProblemDescriptors descriptors = new ProblemDescriptors(40, 1000, 0.2, 0.8, 100);
+        ProblemDescriptors descriptors = new ProblemDescriptors(10, 1000, 0.01, 0.2, 10);
 
         PseudoRandom rGen = new PseudoRandom(1994);
         ProblemGenerator pGen = new ProblemGenerator(rGen, descriptors);
