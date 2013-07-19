@@ -45,6 +45,10 @@ public class MoeaPopulation {
         return age;
     }
 
+    public List<Chromosome> getChromosomes() {
+        return parents;
+    }
+
     public List<Plan> getSolutions() {
         List<Plan> plans = Lists.newArrayList();
         for (Chromosome chromosome : parents) {
@@ -55,6 +59,10 @@ public class MoeaPopulation {
     }
 
     public void initialize(Algorithm initProcedure) {
+        initialize(initProcedure, null);
+    }
+
+    public void initialize(Algorithm initProcedure, MoeaProgressChangeListener listener) {
         parents.clear();
 
         age = 0;
@@ -69,6 +77,13 @@ public class MoeaPopulation {
                 parents.add(new Chromosome(plan));
 
                 LOGGER.debug("Adding #{} chromosome to the population.", parents.size());
+
+                if (listener != null) {
+                    int progress = 100 * parents.size() / parameters.getPopulationSize();
+                    progress = Math.min(progress, 100);
+
+                    listener.onInitializationProgressChanged(progress);
+                }
             } else {
                 LOGGER.debug("No solution was found by constructive algorithm.");
             }

@@ -1,7 +1,12 @@
 package com.akavrt.csp._1d.tester.moea.ui;
 
+import com.akavrt.csp._1d.core.Plan;
+import com.akavrt.csp._1d.core.Problem;
 import com.akavrt.csp._1d.cutgen.ProblemDescriptors;
+import com.akavrt.csp._1d.cutgen.ProblemGenerator;
+import com.akavrt.csp._1d.cutgen.PseudoRandom;
 import com.akavrt.csp._1d.solver.evo.EvolutionaryAlgorithmParameters;
+import com.akavrt.csp._1d.solver.moea.MoeaAlgorithm;
 import com.akavrt.csp._1d.solver.pattern.PatternGeneratorParameters;
 import com.akavrt.csp._1d.tester.moea.ui.content.ContentPanel;
 import com.akavrt.csp._1d.tester.moea.ui.presets.PresetsPanel;
@@ -9,19 +14,23 @@ import com.akavrt.csp._1d.tester.moea.ui.utils.GBC;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /**
  * User: akavrt
  * Date: 18.07.13
  * Time: 03:40
  */
-public class MainFrame extends JFrame implements MainToolBar.OnActionPerformedListener {
+public class MainFrame extends JFrame implements MainToolBar.OnActionPerformedListener,
+        AsyncSolver.OnProblemSolvedListener {
     private static final double SCREEN_DIV = 2;
     private static final String APP_NAME = "moo csp";
     // views
     private MainToolBar toolBar;
     private PresetsPanel presetsPanel;
     private ContentPanel contentPanel;
+    // core
+    private AsyncSolver solver;
 
     public MainFrame() {
         setupFrame();
@@ -100,19 +109,80 @@ public class MainFrame extends JFrame implements MainToolBar.OnActionPerformedLi
 
     @Override
     public void clearTrace() {
-        // stub
+        contentPanel.clearTextArea();
+        contentPanel.clearGraph();
     }
 
     @Override
     public boolean startCalculations() {
-        // stub
+        Problem problem = generateProblem();
+        if (problem == null) {
+            JOptionPane.showMessageDialog(this, "Can't generate problem.", "Warning",
+                                          JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
 
-        return false;
+        contentPanel.appendText("\nExecuting MOEA.\n");
+        contentPanel.clearGraph();
+        contentPanel.setSelectedIndex(1);
+
+        MoeaAlgorithm algorithm = new AlgorithmCreator(presetsPanel).create();
+
+        solver = new AsyncSolver(problem, algorithm, this);
+        solver.execute();
+
+        return true;
     }
 
     @Override
     public void stopCalculations() {
-        // stub
+        if (solver != null && !solver.isDone()) {
+            solver.cancel(true);
+
+            contentPanel.appendText("\nExecution was canceled.\n");
+        }
+    }
+
+    @Override
+    public void onEvolutionProgressChanged(MoeaProgressUpdate update) {
+        toolBar.onEvolutionProgressChanged(update);
+        contentPanel.updateGraph(update);
+    }
+
+    @Override
+    public void onProblemSolved(List<Plan> obtained) {
+        toolBar.setProgressBarVisible(false);
+        toolBar.setStartActionEnabled(true);
+        toolBar.setStopActionEnabled(false);
+
+        if (obtained == null || obtained.isEmpty()) {
+            // notify user with update in text trace
+            contentPanel.appendText("\nNo solution was found in run.");
+        } else if (obtained.get(0) != null) {
+            // TODO trace solutions with text
+        }
+    }
+
+    private Problem generateProblem() {
+        ProblemDescriptors descriptors = presetsPanel.getProblemDescriptors();
+        if (descriptors == null) {
+            return null;
+        }
+
+        int seed = presetsPanel.getRandomSeed();
+        int index = presetsPanel.getProblemIndex();
+        if (seed == 0 || index == 0) {
+            return null;
+        }
+
+        PseudoRandom random = new PseudoRandom(seed);
+        ProblemGenerator generator = new ProblemGenerator(random, descriptors);
+        Problem problem = null;
+        for (int i = 0; i < index; i++) {
+            problem = generator.nextProblem();
+        }
+
+        return problem;
     }
 
 }

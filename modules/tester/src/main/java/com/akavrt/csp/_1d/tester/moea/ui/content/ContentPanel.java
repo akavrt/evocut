@@ -1,5 +1,7 @@
 package com.akavrt.csp._1d.tester.moea.ui.content;
 
+import com.akavrt.csp._1d.tester.moea.ui.MoeaProgressUpdate;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
@@ -11,11 +13,14 @@ import java.awt.*;
  */
 public class ContentPanel extends JTabbedPane {
     private final TextTracePanel textTracePanel;
+    private final GraphTracePanel graphTracePanel;
 
     public ContentPanel() {
         textTracePanel = new TextTracePanel();
+        graphTracePanel = new GraphTracePanel();
 
         addTab("text trace", textTracePanel);
+        addTab("graph trace", graphTracePanel);
 
         setTabPlacement(JTabbedPane.BOTTOM);
         setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -46,6 +51,14 @@ public class ContentPanel extends JTabbedPane {
 
     public void appendText(String text) {
         textTracePanel.appendText(text);
+    }
+
+    public void clearGraph() {
+        graphTracePanel.clearData();
+    }
+
+    public void updateGraph(MoeaProgressUpdate update) {
+        graphTracePanel.updateData(update);
     }
 
     public void setFocus() {

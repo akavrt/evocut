@@ -19,6 +19,7 @@ public class MoeaAlgorithm implements Algorithm {
     private final Algorithm initializationProcedure;
     private final EvolutionaryOperator mutation;
     private final EvolutionaryAlgorithmParameters parameters;
+    private MoeaProgressChangeListener progressChangeListener;
 
     public MoeaAlgorithm(
             Algorithm initializationProcedure,
@@ -58,6 +59,14 @@ public class MoeaAlgorithm implements Algorithm {
         return search(context);
     }
 
+    public void setProgressChangeListener(MoeaProgressChangeListener listener) {
+        this.progressChangeListener = listener;
+    }
+
+    public void removeProgressChangeListener() {
+        this.progressChangeListener = null;
+    }
+
     private List<Plan> search(ExecutionContext context) {
         // initializing mutation operator
         mutation.initialize(context);
@@ -71,12 +80,19 @@ public class MoeaAlgorithm implements Algorithm {
     }
 
     private void initializationPhase(MoeaPopulation population) {
-        population.initialize(initializationProcedure);
+        population.initialize(initializationProcedure, progressChangeListener);
     }
 
     private void generationalPhase(ExecutionContext context, MoeaPopulation population) {
         while (!context.isCancelled() && population.getAge() < parameters.getRunSteps()) {
             population.generation(mutation);
+
+            if (progressChangeListener != null) {
+                int progress = 100 * population.getAge() / parameters.getRunSteps();
+                progress = Math.min(progress, 100);
+
+                progressChangeListener.onGenerationProgressChanged(progress, population);
+            }
         }
     }
 

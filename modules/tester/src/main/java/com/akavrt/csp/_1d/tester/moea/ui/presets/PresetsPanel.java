@@ -53,7 +53,7 @@ public class PresetsPanel extends JPanel {
     }
 
     public ProblemDescriptors getProblemDescriptors() {
-        return  problemPanel.getParameters();
+        return problemPanel.getParameters();
     }
 
     public void setProblemDescriptors(ProblemDescriptors descriptors) {

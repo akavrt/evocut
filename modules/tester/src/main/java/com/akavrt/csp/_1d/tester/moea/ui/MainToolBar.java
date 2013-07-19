@@ -112,13 +112,11 @@ public class MainToolBar extends JToolBar {
         progressBar.setVisible(visible);
     }
 
-    /*
-    public void onEvolutionProgressChanged(EvolutionProgressUpdate update) {
+    public void onEvolutionProgressChanged(MoeaProgressUpdate update) {
         progressBar.setValue(update.progress);
         progressBar.setString(String.format("%s %d%%",
                                             update.phase.getDescription(), update.progress));
     }
-    */
 
     public interface OnActionPerformedListener {
         void clearTrace();
@@ -137,4 +135,5 @@ public class MainToolBar extends JToolBar {
             putValue(ACCELERATOR_KEY, accelerator);
         }
     }
+
 }
