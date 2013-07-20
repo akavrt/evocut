@@ -1,11 +1,11 @@
 package com.akavrt.csp._1d.tester.moea.ui;
 
-import com.akavrt.csp._1d.core.Plan;
 import com.akavrt.csp._1d.core.Problem;
 import com.akavrt.csp._1d.cutgen.ProblemDescriptors;
 import com.akavrt.csp._1d.cutgen.ProblemGenerator;
 import com.akavrt.csp._1d.cutgen.PseudoRandom;
 import com.akavrt.csp._1d.solver.evo.EvolutionaryAlgorithmParameters;
+import com.akavrt.csp._1d.solver.moea.Chromosome;
 import com.akavrt.csp._1d.solver.moea.MoeaAlgorithm;
 import com.akavrt.csp._1d.solver.pattern.PatternGeneratorParameters;
 import com.akavrt.csp._1d.tester.moea.ui.content.ContentPanel;
@@ -122,6 +122,9 @@ public class MainFrame extends JFrame implements MainToolBar.OnActionPerformedLi
             return false;
         }
 
+
+        contentPanel.setProblem(problem);
+
         contentPanel.appendText("\nExecuting MOEA.\n");
         contentPanel.clearGraph();
         contentPanel.setSelectedIndex(1);
@@ -150,7 +153,7 @@ public class MainFrame extends JFrame implements MainToolBar.OnActionPerformedLi
     }
 
     @Override
-    public void onProblemSolved(List<Plan> obtained) {
+    public void onProblemSolved(List<Chromosome> obtained) {
         toolBar.setProgressBarVisible(false);
         toolBar.setStartActionEnabled(true);
         toolBar.setStopActionEnabled(false);
@@ -158,8 +161,8 @@ public class MainFrame extends JFrame implements MainToolBar.OnActionPerformedLi
         if (obtained == null || obtained.isEmpty()) {
             // notify user with update in text trace
             contentPanel.appendText("\nNo solution was found in run.");
-        } else if (obtained.get(0) != null) {
-            // TODO trace solutions with text
+        } else {
+            contentPanel.setSolutions(obtained);
         }
     }
 

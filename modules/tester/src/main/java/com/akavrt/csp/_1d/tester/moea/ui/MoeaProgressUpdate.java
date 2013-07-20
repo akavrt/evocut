@@ -20,6 +20,8 @@ public class MoeaProgressUpdate {
     private List<Chromosome> paretoFront;
     private List<Chromosome> feasibleSolutions;
     private List<Chromosome> infeasibleSolutions;
+    private List<Chromosome> rejectedFeasibleSolutions;
+    private List<Chromosome> rejectedInfeasibleSolutions;
 
     public MoeaProgressUpdate(int progress, EvolutionPhase phase) {
         this(progress, phase, null);
@@ -37,11 +39,14 @@ public class MoeaProgressUpdate {
         feasibleSolutions = Lists.newArrayList();
         infeasibleSolutions = Lists.newArrayList();
 
+        rejectedFeasibleSolutions = Lists.newArrayList();
+        rejectedInfeasibleSolutions = Lists.newArrayList();
+
         if (population == null) {
             return;
         }
 
-        for (Chromosome chromosome : population.getChromosomes()) {
+        for (Chromosome chromosome : population.getParents()) {
             if (chromosome.getRank() == 1) {
                 paretoFront.add(chromosome);
             }
@@ -73,6 +78,15 @@ public class MoeaProgressUpdate {
                 return result;
             }
         });
+
+        for (Chromosome chromosome : population.getRejects()) {
+            if (chromosome.isFeasible()) {
+                rejectedFeasibleSolutions.add(chromosome);
+            } else {
+                rejectedInfeasibleSolutions.add(chromosome);
+            }
+        }
+
     }
 
     public List<Chromosome> getParetoFront() {
@@ -85,6 +99,14 @@ public class MoeaProgressUpdate {
 
     public List<Chromosome> getInfeasibleSolutions() {
         return infeasibleSolutions;
+    }
+
+    public List<Chromosome> getRejectedFeasibleSolutions() {
+        return rejectedFeasibleSolutions;
+    }
+
+    public List<Chromosome> getRejectedInfeasibleSolutions() {
+        return rejectedInfeasibleSolutions;
     }
 
 }

@@ -6,13 +6,11 @@ import com.akavrt.csp._1d.solver.ExecutionContext;
 import com.akavrt.csp._1d.solver.evo.EvolutionaryAlgorithmParameters;
 import com.akavrt.csp._1d.solver.evo.EvolutionaryOperator;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * User: akavrt
@@ -24,6 +22,9 @@ public class MoeaPopulation {
     private final ExecutionContext context;
     private final EvolutionaryAlgorithmParameters parameters;
     private final List<Chromosome> parents;
+    private final List<Chromosome> rejects;
+    private final Set<Integer> hashes;
+    private final List<Chromosome> buffer;
     private final RankEstimator estimator;
     private final Comparator<Chromosome> comparator;
     private final Random generator;
@@ -35,6 +36,10 @@ public class MoeaPopulation {
         this.parameters = parameters;
 
         parents = Lists.newArrayList();
+        rejects = Lists.newArrayList();
+
+        hashes = Sets.newHashSet();
+        buffer = Lists.newArrayList();
 
         estimator = new NaiveRankEstimator();
         comparator = new RankComparator();
@@ -45,8 +50,12 @@ public class MoeaPopulation {
         return age;
     }
 
-    public List<Chromosome> getChromosomes() {
+    public List<Chromosome> getParents() {
         return parents;
+    }
+
+    public List<Chromosome> getRejects() {
+        return rejects;
     }
 
     public List<Plan> getSolutions() {
@@ -93,12 +102,19 @@ public class MoeaPopulation {
     }
 
     public void generation(EvolutionaryOperator mutation) {
+        incAge();
+        mutate(mutation);
+        truncate();
+    }
+
+    private void incAge() {
         age++;
 
         LOGGER.debug("*** GENERATION {} ***", age);
 
-        mutate(mutation);
-        truncate();
+        for (Chromosome parent : parents) {
+            parent.incAge();
+        }
     }
 
     private void mutate(EvolutionaryOperator mutation) {
@@ -137,10 +153,51 @@ public class MoeaPopulation {
         // the worst chromosome - the last one
         Collections.sort(parents, comparator);
 
+        diversityAwareTruncation();
+    }
+
+    private void naiveTruncation() {
         // discard the second half of the intermediate population
+        rejects.clear();
         while (parents.size() > parameters.getPopulationSize()) {
-            parents.remove(parents.size() - 1);
+            Chromosome rejected = parents.remove(parents.size() - 1);
+            rejects.add(rejected);
         }
+    }
+
+    private void diversityAwareTruncation() {
+        // simple strategy employed to filter out duplicate solutions
+        hashes.clear();
+        buffer.clear();
+        int index = 0;
+        while (buffer.size() < parameters.getPopulationSize() && index < parents.size()) {
+            Chromosome candidate = parents.get(index);
+            if (hashes.add(candidate.getPlan().hashCode())) {
+                buffer.add(candidate);
+                parents.remove(index);
+            } else {
+                index++;
+            }
+        }
+
+        // TODO we need to consider the following approach:
+        // duplicates replaced with newly constructed solutions
+        // or additional mutation is applied to them
+
+        // if there is not enough unique solutions
+        // to fill in parent population, use duplicates
+        while (buffer.size() < parameters.getPopulationSize()) {
+            // previously we used: buffer.add(parents.remove(0));
+
+            int pick = generator.nextInt(parents.size());
+            buffer.add(parents.remove(pick));
+        }
+
+        rejects.clear();
+        rejects.addAll(parents);
+
+        parents.clear();
+        parents.addAll(buffer);
     }
 
 }

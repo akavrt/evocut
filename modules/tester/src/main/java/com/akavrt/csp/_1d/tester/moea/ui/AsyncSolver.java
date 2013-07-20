@@ -1,16 +1,19 @@
 package com.akavrt.csp._1d.tester.moea.ui;
 
-import com.akavrt.csp._1d.core.Plan;
 import com.akavrt.csp._1d.core.Problem;
 import com.akavrt.csp._1d.solver.ExecutionContext;
 import com.akavrt.csp._1d.solver.evo.EvolutionPhase;
+import com.akavrt.csp._1d.solver.moea.Chromosome;
 import com.akavrt.csp._1d.solver.moea.MoeaAlgorithm;
 import com.akavrt.csp._1d.solver.moea.MoeaPopulation;
 import com.akavrt.csp._1d.solver.moea.MoeaProgressChangeListener;
+import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ import java.util.List;
  * Date: 10.04.13
  * Time: 15:05
  */
-public class AsyncSolver extends SwingWorker<List<Plan>, MoeaProgressUpdate> implements
+public class AsyncSolver extends SwingWorker<List<Chromosome>, MoeaProgressUpdate> implements
         ExecutionContext, MoeaProgressChangeListener {
     private final static Logger LOGGER = LogManager.getLogger(AsyncSolver.class);
     private final Problem problem;
@@ -39,8 +42,37 @@ public class AsyncSolver extends SwingWorker<List<Plan>, MoeaProgressUpdate> imp
     }
 
     @Override
-    protected List<Plan> doInBackground() {
-        return algorithm.execute(this);
+    protected List<Chromosome> doInBackground() {
+        algorithm.execute(this);
+
+        List<Chromosome> chromosomes = null;
+        if (algorithm.getPopulation() != null && algorithm.getPopulation().getParents() != null) {
+            chromosomes = Lists.newArrayList(algorithm.getPopulation().getParents());
+
+            Collections.sort(chromosomes, new Comparator<Chromosome>() {
+                @Override
+                public int compare(Chromosome lhs, Chromosome rhs) {
+                    int result;
+
+                    if (lhs.getRank() == rhs.getRank()) {
+                        if (lhs.getObjective(1) == rhs.getObjective(1)) {
+                            result = lhs.getObjective(0) == rhs.getObjective(0)
+                                    ? 0
+                                    : (lhs.getObjective(0) < rhs.getObjective(0) ? -1 : 1);
+                        } else {
+                            result = lhs.getObjective(1) < rhs.getObjective(1) ? -1 : 1;
+                        }
+                    } else {
+                        result = lhs.getRank() < rhs.getRank() ? -1 : 1;
+                    }
+
+                    return result;
+                }
+            });
+
+        }
+
+        return chromosomes;
     }
 
     @Override
@@ -56,7 +88,7 @@ public class AsyncSolver extends SwingWorker<List<Plan>, MoeaProgressUpdate> imp
         this.algorithm.removeProgressChangeListener();
 
         if (listener != null && !isCancelled()) {
-            List<Plan> solutions = null;
+            List<Chromosome> solutions = null;
             try {
                 solutions = get();
             } catch (Exception e) {
@@ -79,7 +111,7 @@ public class AsyncSolver extends SwingWorker<List<Plan>, MoeaProgressUpdate> imp
 
     public interface OnProblemSolvedListener {
         void onEvolutionProgressChanged(MoeaProgressUpdate update);
-        void onProblemSolved(List<Plan> solutions);
+        void onProblemSolved(List<Chromosome> solutions);
     }
 
 }

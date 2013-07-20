@@ -29,14 +29,14 @@ public class StrategyTester {
     }
 
     private void run() {
-        Problem problem = generateProblem();
+        Problem problem = generateProblem(1994, 10);
         System.out.println(problem);
 
         Metric objective = createMetric();
 
         Algorithm algorithm = createAlgorithm(objective);
 
-        MultistartSolver solver = new MultistartSolver(problem, algorithm, 10);
+        MultistartSolver solver = new MultistartSolver(problem, algorithm, 1);
 
         solver.solve();
 
@@ -51,11 +51,10 @@ public class StrategyTester {
 
     private Metric createMetric() {
         ConstraintAwareMetricParameters objectiveParameters = new ConstraintAwareMetricParameters();
-        objectiveParameters.setAggregatedTrimFactor(0.9);
-        objectiveParameters.setPatternsFactor(0.1);
-        Metric objectiveFunction = new ConstraintAwareMetric(objectiveParameters);
+        objectiveParameters.setAggregatedTrimFactor(0.95);
+        objectiveParameters.setPatternsFactor(0.05);
 
-        return objectiveFunction;
+        return new ConstraintAwareMetric(objectiveParameters);
     }
 
     private Algorithm createAlgorithm(Metric objectiveFunction) {
@@ -66,20 +65,24 @@ public class StrategyTester {
         factory = new TraceableStrategyComponentsFactory(generator, objectiveFunction);
 
         EvolutionStrategyParameters strategyParameters = new EvolutionStrategyParameters();
-        strategyParameters.setPopulationSize(50);
-        strategyParameters.setOffspringCount(45);
-        strategyParameters.setRunSteps(2000);
+        strategyParameters.setPopulationSize(100);
+        strategyParameters.setOffspringCount(90);
+        strategyParameters.setRunSteps(20000);
 
         return new EvolutionStrategy(factory, objectiveFunction, strategyParameters);
     }
 
-    private Problem generateProblem() {
-        ProblemDescriptors descriptors = new ProblemDescriptors(10, 1000, 0.01, 0.2, 10);
+    private Problem generateProblem(int seed, int index) {
+        ProblemDescriptors descriptors = new ProblemDescriptors(40, 1000, 0.2, 0.8, 100);
 
-        PseudoRandom rGen = new PseudoRandom(1994);
-        ProblemGenerator pGen = new ProblemGenerator(rGen, descriptors);
+        PseudoRandom random = new PseudoRandom(seed);
+        ProblemGenerator generator = new ProblemGenerator(random, descriptors);
+        Problem problem = null;
+        for (int i = 0; i < index; i++) {
+            problem = generator.nextProblem();
+        }
 
-        return pGen.nextProblem();
+        return problem;
     }
 
 }

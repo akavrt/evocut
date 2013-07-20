@@ -20,6 +20,7 @@ public class MoeaAlgorithm implements Algorithm {
     private final EvolutionaryOperator mutation;
     private final EvolutionaryAlgorithmParameters parameters;
     private MoeaProgressChangeListener progressChangeListener;
+    private MoeaPopulation population;
 
     public MoeaAlgorithm(
             Algorithm initializationProcedure,
@@ -67,11 +68,15 @@ public class MoeaAlgorithm implements Algorithm {
         this.progressChangeListener = null;
     }
 
+    public MoeaPopulation getPopulation() {
+        return population;
+    }
+
     private List<Plan> search(ExecutionContext context) {
         // initializing mutation operator
         mutation.initialize(context);
 
-        MoeaPopulation population = new MoeaPopulation(context, parameters);
+        population = new MoeaPopulation(context, parameters);
 
         initializationPhase(population);
         generationalPhase(context, population);

@@ -12,10 +12,12 @@ public class Chromosome {
     private final double[] distances;
     private int rank;
     private boolean isBoundary;
+    private int age;
 
     public Chromosome(Plan plan) {
         this.plan = plan;
         distances = new double[2];
+        age = 1;
     }
 
     public int dimen() {
@@ -122,6 +124,14 @@ public class Chromosome {
 
     public void setBoundary(boolean boundary) {
         this.isBoundary = boundary;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void incAge() {
+        age++;
     }
 
 }
