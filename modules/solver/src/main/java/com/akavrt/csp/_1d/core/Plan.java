@@ -89,7 +89,7 @@ public class Plan {
 
         int length = 0;
         for (int i = 0; i < problem.size(); i++) {
-            length += cuts[i] * problem.getOrder(i).getLength();
+            length += cuts[i] * problem.getOrder(i).getWidth();
         }
 
         if (length == 0) {
@@ -168,7 +168,7 @@ public class Plan {
 
             int result = 0;
             for (int i = 0; i < problem.size(); i++) {
-                int residualDemand = problem.getOrder(i).getDemand() - produced[i];
+                int residualDemand = problem.getOrder(i).getQuantity() - produced[i];
                 result += residualDemand > 0 ? residualDemand : 0;
             }
 
@@ -193,7 +193,7 @@ public class Plan {
                 int multiplier = patternEntry.getValue();
                 int patternLength = 0;
                 for (int i = 0; i < problem.size(); i++) {
-                    patternLength += cuts[i] * problem.getOrder(i).getLength();
+                    patternLength += cuts[i] * problem.getOrder(i).getWidth();
                 }
 
                 trim += (problem.getStockLength() - patternLength) * multiplier;
@@ -224,7 +224,7 @@ public class Plan {
 
             int[] residualDemand = new int[problem.size()];
             for (int i = 0; i < problem.size(); i++) {
-                int orderResidual = problem.getOrder(i).getDemand() - produced[i];
+                int orderResidual = problem.getOrder(i).getQuantity() - produced[i];
                 residualDemand[i] = orderResidual > 0 ? orderResidual : 0;
             }
 
@@ -240,9 +240,9 @@ public class Plan {
 
             int residualLength = 0;
             for (int i = 0; i < problem.size(); i++) {
-                int residualDemand = problem.getOrder(i).getDemand() - produced[i];
+                int residualDemand = problem.getOrder(i).getQuantity() - produced[i];
                 if (residualDemand > 0) {
-                    residualLength += residualDemand * problem.getOrder(i).getLength();
+                    residualLength += residualDemand * problem.getOrder(i).getWidth();
                 }
             }
 

@@ -21,12 +21,12 @@ import java.util.List;
  * Date: 18.07.13
  * Time: 03:40
  */
-public class MainFrame extends JFrame implements MainToolBar.OnActionPerformedListener,
+public class MainFrame extends JFrame implements LoadToolBar.OnActionPerformedListener,
         AsyncSolver.OnProblemSolvedListener {
     private static final double SCREEN_DIV = 2;
     private static final String APP_NAME = "moo csp";
     // views
-    private MainToolBar toolBar;
+    private LoadToolBar toolBar;
     private PresetsPanel presetsPanel;
     private ContentPanel contentPanel;
     // core
@@ -77,7 +77,7 @@ public class MainFrame extends JFrame implements MainToolBar.OnActionPerformedLi
     private void setupViews() {
         setLayout(new GridBagLayout());
 
-        toolBar = new MainToolBar(this);
+        toolBar = new LoadToolBar(this);
         presetsPanel = new PresetsPanel();
         contentPanel = new ContentPanel();
 

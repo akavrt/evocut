@@ -117,7 +117,7 @@ public class ReductionAlgorithm implements Algorithm {
         Map<Integer, Integer> indicesMap = Maps.newHashMap();
         for (int i = 0; i < masterProblem.size(); i++) {
             Order order = masterProblem.getOrder(i);
-            indicesMap.put(order.getLength(), i);
+            indicesMap.put(order.getWidth(), i);
         }
 
         Problem splitProblem = split.getProblem();
@@ -128,12 +128,12 @@ public class ReductionAlgorithm implements Algorithm {
             for (int i = 0; i < splitProblem.size(); i++) {
                 Order splitOrder = splitProblem.getOrder(i);
 
-                if (indicesMap.containsKey(splitOrder.getLength())) {
-                    int index = indicesMap.get(splitOrder.getLength());
+                if (indicesMap.containsKey(splitOrder.getWidth())) {
+                    int index = indicesMap.get(splitOrder.getWidth());
                     masterCuts[index] = splitCuts[i];
                 } else {
                     LOGGER.warn("Can't find master order index for split order with length {}",
-                                splitOrder.getLength());
+                                splitOrder.getWidth());
                 }
 
             }

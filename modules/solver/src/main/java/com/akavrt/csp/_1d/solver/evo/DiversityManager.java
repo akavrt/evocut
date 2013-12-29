@@ -14,6 +14,7 @@ public class DiversityManager {
     private static final int RETRY_BOUND = 10;
     private final Set<Integer> hashes;
     private int retryCount;
+    private int materialUpperBound;
 
     public DiversityManager() {
         hashes = Sets.newHashSet();
@@ -22,9 +23,15 @@ public class DiversityManager {
     public void reset() {
         hashes.clear();
         retryCount = 0;
+        materialUpperBound = 0;
     }
 
     public void add(Plan chromosome) {
+        int materialUsage = chromosome.getMaterialUsage();
+        if (materialUsage > materialUpperBound) {
+            materialUpperBound = materialUsage;
+        }
+
         hashes.add(chromosome.hashCode());
     }
 
@@ -48,4 +55,7 @@ public class DiversityManager {
         return RETRY_BOUND;
     }
 
+    public int getMaterialUpperBound() {
+        return materialUpperBound;
+    }
 }

@@ -40,7 +40,7 @@ public class PseudoRandom {
     }
 
     /**
-     * <p><Returns the next pseudorandom, uniformly distributed double value between 0.0
+     * <p>Returns the next pseudorandom, uniformly distributed double value between 0.0
      * (exclusive) and 1.0 (exclusive) from this random number generator's sequence.</p>
      *
      * @return The next pseudorandom, uniformly distributed double value between 0.0 and 1.0 from

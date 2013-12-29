@@ -30,7 +30,7 @@ public class StrategyBatchConfig extends BatchConfig {
     @Override
     public void printHelp() {
         System.out.println("You can run batch using this command:");
-        System.out.println("    target_dir [runs] [es_params] [pgp_params] [of_params]");
+        System.out.println("    batch_file [runs] [es_params] [pgp_params] [of_params]");
         System.out.println("\n  Where");
         System.out.println("    batch_file - absolute path to the file with batch description.");
         System.out.println("    runs       - the number to run algorithm for each problem, optional");

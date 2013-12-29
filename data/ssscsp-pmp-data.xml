@@ -1,0 +1,881 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <classes>
+        <!-- Problem classes numerated according to the table given in the original paper by Foerster and Wascher (2000) on p. 1667 -->
+        <!-- v_1 = 0.01, v_2 = 0.2 -->
+        <!-- m = 10 -->
+        <class>
+            <name>cutgen-01</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>10</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.2</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-02</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>10</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.2</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+        <!-- m = 20 -->
+        <class>
+            <name>cutgen-03</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>20</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.2</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-04</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>20</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.2</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+        <!-- m = 40 -->
+        <class>
+            <name>cutgen-05</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>40</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.2</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-06</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>40</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.2</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+        <!-- v_1 = 0.01, v_2 = 0.8 -->
+        <!-- m = 10 -->
+        <class>
+            <name>cutgen-07</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>10</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-08</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>10</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+        <!-- m = 20 -->
+        <class>
+            <name>cutgen-09</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>20</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-10</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>20</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+        <!-- m = 40 -->
+        <class>
+            <name>cutgen-11</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>40</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-12</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>40</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.01</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+        <!-- v_1 = 0.2, v_2 = 0.8 -->
+        <!-- m = 10 -->
+        <class>
+            <name>cutgen-13</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>10</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.2</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-14</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>10</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.2</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+        <!-- m = 20 -->
+        <class>
+            <name>cutgen-15</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>20</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.2</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-16</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>20</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.2</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+        <!-- m = 40 -->
+        <class>
+            <name>cutgen-17</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>40</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.2</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>10</average-demand>
+            </descriptors>
+        </class>
+        <class>
+            <name>cutgen-18</name>
+            <description>Problem class from Foerster and Wascher (2000)</description>
+            <class-size>100</class-size>
+            <seed>1994</seed>
+            <descriptors>
+                <problem-size>40</problem-size>
+                <stock-length>1000</stock-length>
+                <order-length-lb>0.2</order-length-lb>
+                <order-length-ub>0.8</order-length-ub>
+                <average-demand>100</average-demand>
+            </descriptors>
+        </class>
+    </classes>
+    <sources>
+        <source cite="foerster00">
+            <setup>
+                <class name="cutgen-01" z1="  11.49" z2=" 3.40" />
+                <class name="cutgen-02" z1=" 110.25" z2=" 7.81" />
+                <class name="cutgen-03" z1="  22.13" z2=" 5.89" />
+                <class name="cutgen-04" z1=" 215.93" z2="14.26" />
+                <class name="cutgen-05" z1="  42.96" z2="10.75" />
+                <class name="cutgen-06" z1=" 424.71" z2="25.44" />
+                <class name="cutgen-07" z1="  50.21" z2=" 7.90" />
+                <class name="cutgen-08" z1=" 499.52" z2=" 9.96" />
+                <class name="cutgen-09" z1="  93.67" z2="15.03" />
+                <class name="cutgen-10" z1=" 932.32" z2="19.28" />
+                <class name="cutgen-11" z1=" 176.97" z2="28.74" />
+                <class name="cutgen-12" z1="1766.20" z2="37.31" />
+                <class name="cutgen-13" z1="  63.27" z2=" 8.97" />
+                <class name="cutgen-14" z1=" 632.12" z2="10.32" />
+                <class name="cutgen-15" z1=" 119.43" z2="16.88" />
+                <class name="cutgen-16" z1="1191.80" z2="19.91" />
+                <class name="cutgen-17" z1=" 224.68" z2="31.46" />
+                <class name="cutgen-18" z1="2242.40" z2="38.28" />
+            </setup>
+        </source>
+        <source cite="belov03">
+            <setup>
+                <class name="cutgen-01" z1="  11.49" z2=" 3.43" />
+                <class name="cutgen-02" z1=" 110.25" z2=" 6.08" />
+                <class name="cutgen-05" z1="  42.96" z2="10.47" />
+                <class name="cutgen-06" z1=" 424.71" z2="18.71" />
+                <class name="cutgen-07" z1="  50.21" z2=" 7.57" />
+                <class name="cutgen-08" z1=" 499.52" z2=" 8.98" />
+                <class name="cutgen-11" z1=" 176.97" z2="25.18" />
+                <class name="cutgen-12" z1="1766.20" z2="33.75" />
+                <class name="cutgen-13" z1="  63.27" z2=" 8.79" />
+                <class name="cutgen-14" z1=" 632.12" z2=" 9.97" />
+                <class name="cutgen-17" z1=" 224.68" z2="29.15" />
+                <class name="cutgen-18" z1="2242.40" z2="35.99" />
+            </setup>
+        </source>
+        <source cite="umetani06">
+            <setup>
+                <class name="cutgen-01" z1="  15.15" z2=" 1.67" />
+                <class name="cutgen-02" z1=" 149.78" z2=" 1.67" />
+                <class name="cutgen-03" z1="  28.01" z2=" 2.57" />
+                <class name="cutgen-04" z1=" 278.57" z2=" 2.57" />
+                <class name="cutgen-05" z1="  55.12" z2=" 4.28" />
+                <class name="cutgen-06" z1=" 546.64" z2=" 4.28" />
+                <class name="cutgen-07" z1="  54.14" z2=" 5.01" />
+                <class name="cutgen-08" z1=" 541.50" z2=" 5.01" />
+                <class name="cutgen-09" z1=" 101.21" z2=" 9.27" />
+                <class name="cutgen-10" z1="1008.05" z2=" 9.27" />
+                <class name="cutgen-11" z1=" 193.17" z2="16.95" />
+                <class name="cutgen-12" z1="1920.39" z2="16.95" />
+                <class name="cutgen-13" z1="  67.61" z2=" 6.26" />
+                <class name="cutgen-14" z1=" 675.50" z2=" 6.26" />
+                <class name="cutgen-15" z1=" 125.86" z2="11.76" />
+                <class name="cutgen-16" z1="1256.92" z2="11.76" />
+                <class name="cutgen-17" z1=" 239.64" z2="21.50" />
+                <class name="cutgen-18" z1="2391.53" z2="21.50" />
+            </setup>
+            <setup>
+                <class name="cutgen-01" z1="  12.24" z2=" 2.43" />
+                <class name="cutgen-02" z1=" 114.49" z2=" 3.18" />
+                <class name="cutgen-03" z1="  23.53" z2=" 3.98" />
+                <class name="cutgen-04" z1=" 223.92" z2=" 4.89" />
+                <class name="cutgen-05" z1="  45.29" z2=" 6.68" />
+                <class name="cutgen-06" z1=" 442.00" z2=" 7.25" />
+                <class name="cutgen-07" z1="  51.35" z2=" 5.52" />
+                <class name="cutgen-08" z1=" 507.92" z2=" 5.75" />
+                <class name="cutgen-09" z1="  96.35" z2="10.05" />
+                <class name="cutgen-10" z1=" 954.55" z2="10.30" />
+                <class name="cutgen-11" z1=" 182.88" z2="18.32" />
+                <class name="cutgen-12" z1="1818.35" z2="18.40" />
+                <class name="cutgen-13" z1="  64.16" z2=" 6.68" />
+                <class name="cutgen-14" z1=" 637.03" z2=" 6.85" />
+                <class name="cutgen-15" z1=" 122.44" z2="12.34" />
+                <class name="cutgen-16" z1="1217.91" z2="12.46" />
+                <class name="cutgen-17" z1=" 231.41" z2="22.44" />
+                <class name="cutgen-18" z1="2307.70" z2="22.50" />
+            </setup>
+            <setup>
+                <class name="cutgen-01" z1="  12.24" z2=" 2.43" />
+                <class name="cutgen-02" z1=" 113.02" z2=" 3.68" />
+                <class name="cutgen-03" z1="  23.08" z2=" 4.42" />
+                <class name="cutgen-04" z1=" 221.04" z2=" 5.57" />
+                <class name="cutgen-05" z1="  44.76" z2=" 7.35" />
+                <class name="cutgen-06" z1=" 435.44" z2=" 8.49" />
+                <class name="cutgen-07" z1="  50.98" z2=" 5.72" />
+                <class name="cutgen-08" z1=" 503.47" z2=" 6.04" />
+                <class name="cutgen-09" z1="  95.49" z2="10.44" />
+                <class name="cutgen-10" z1=" 946.09" z2="10.83" />
+                <class name="cutgen-11" z1=" 180.93" z2="19.30" />
+                <class name="cutgen-12" z1="1799.14" z2="19.58" />
+                <class name="cutgen-13" z1="  63.80" z2=" 6.84" />
+                <class name="cutgen-14" z1=" 634.50" z2=" 7.02" />
+                <class name="cutgen-15" z1=" 121.34" z2="12.70" />
+                <class name="cutgen-16" z1="1207.63" z2="12.91" />
+                <class name="cutgen-17" z1=" 229.14" z2="23.09" />
+                <class name="cutgen-18" z1="2282.51" z2="23.31" />
+            </setup>
+            <setup>
+                <class name="cutgen-01" z1="  12.24" z2=" 2.43" />
+                <class name="cutgen-02" z1=" 111.60" z2=" 4.57" />
+                <class name="cutgen-03" z1="  23.08" z2=" 4.42" />
+                <class name="cutgen-04" z1=" 218.44" z2=" 7.36" />
+                <class name="cutgen-05" z1="  43.95" z2=" 9.32" />
+                <class name="cutgen-06" z1=" 429.10" z2="12.48" />
+                <class name="cutgen-07" z1="  50.62" z2=" 5.92" />
+                <class name="cutgen-08" z1=" 500.77" z2=" 6.42" />
+                <class name="cutgen-09" z1="  94.40" z2="11.38" />
+                <class name="cutgen-10" z1=" 936.18" z2="12.11" />
+                <class name="cutgen-11" z1=" 178.34" z2="22.08" />
+                <class name="cutgen-12" z1="1773.74" z2="22.66" />
+                <class name="cutgen-13" z1="  63.53" z2=" 7.01" />
+                <class name="cutgen-14" z1=" 630.50" z2=" 7.43" />
+                <class name="cutgen-15" z1=" 120.53" z2="13.26" />
+                <class name="cutgen-16" z1="1196.57" z2="13.80" />
+                <class name="cutgen-17" z1=" 226.62" z2="24.49" />
+                <class name="cutgen-18" z1="2255.12" z2="25.36" />
+            </setup>
+        </source>
+        <source cite="yanasse06">
+            <setup>
+                <class name="cutgen-01" z1="  11.56" z2=" 3.31" />
+                <class name="cutgen-02" z1=" 110.40" z2=" 6.95" />
+                <class name="cutgen-03" z1="  22.17" z2=" 4.96" />
+                <class name="cutgen-04" z1=" 215.98" z2="10.32" />
+                <class name="cutgen-05" z1="  42.99" z2=" 7.63" />
+                <class name="cutgen-06" z1=" 424.89" z2="13.31" />
+                <class name="cutgen-07" z1="  51.69" z2=" 7.66" />
+                <class name="cutgen-08" z1=" 502.23" z2=" 9.62" />
+                <class name="cutgen-09" z1="  99.49" z2="13.64" />
+                <class name="cutgen-10" z1=" 948.41" z2="18.21" />
+                <class name="cutgen-11" z1=" 195.67" z2="24.60" />
+                <class name="cutgen-12" z1="1847.42" z2="33.23" />
+                <class name="cutgen-13" z1="  64.20" z2=" 8.93" />
+                <class name="cutgen-14" z1=" 633.26" z2="10.51" />
+                <class name="cutgen-15" z1=" 123.90" z2="16.28" />
+                <class name="cutgen-16" z1="1197.66" z2="19.89" />
+                <class name="cutgen-17" z1=" 244.02" z2="29.76" />
+                <class name="cutgen-18" z1="2268.30" z2="37.90" />
+            </setup>
+            <setup>
+                <class name="cutgen-02" z1=" 118.40" z2=" 4.13" />
+                <class name="cutgen-04" z1=" 227.61" z2=" 5.75" />
+                <class name="cutgen-06" z1=" 443.46" z2=" 8.55" />
+                <class name="cutgen-08" z1=" 518.38" z2=" 8.55" />
+                <class name="cutgen-10" z1="1003.92" z2="14.93" />
+                <class name="cutgen-12" z1="1986.94" z2="26.82" />
+                <class name="cutgen-14" z1=" 640.82" z2=" 9.85" />
+                <class name="cutgen-16" z1="1238.59" z2="18.05" />
+                <class name="cutgen-18" z1="2459.10" z2="32.54" />
+            </setup>
+            <setup>
+                <class name="cutgen-02" z1=" 114.15" z2=" 4.43" />
+                <class name="cutgen-04" z1=" 221.65" z2=" 6.32" />
+                <class name="cutgen-06" z1=" 433.45" z2=" 9.47" />
+                <class name="cutgen-08" z1=" 508.04" z2=" 8.95" />
+                <class name="cutgen-10" z1=" 988.87" z2="15.82" />
+                <class name="cutgen-12" z1="1948.00" z2="28.42" />
+                <class name="cutgen-14" z1=" 637.77" z2="10.13" />
+                <class name="cutgen-16" z1="1216.57" z2="18.96" />
+                <class name="cutgen-18" z1="2377.26" z2="34.20" />
+            </setup>
+            <setup>
+                <class name="cutgen-02" z1=" 111.42" z2=" 5.45" />
+                <class name="cutgen-04" z1=" 217.78" z2=" 8.15" />
+                <class name="cutgen-06" z1=" 427.21" z2="11.07" />
+                <class name="cutgen-08" z1=" 503.49" z2=" 9.47" />
+                <class name="cutgen-10" z1=" 960.83" z2="17.36" />
+                <class name="cutgen-12" z1="1897.00" z2="30.69" />
+                <class name="cutgen-14" z1=" 633.76" z2="10.38" />
+                <class name="cutgen-16" z1="1201.78" z2="19.54" />
+                <class name="cutgen-18" z1="2303.00" z2="36.28" />
+            </setup>
+            <setup>
+                <class name="cutgen-01" z1="  11.55" z2=" 3.23" />
+                <class name="cutgen-02" z1=" 110.60" z2=" 6.27" />
+                <class name="cutgen-07" z1="  51.84" z2=" 7.17" />
+                <class name="cutgen-08" z1=" 513.62" z2=" 8.18" />
+                <class name="cutgen-09" z1="  98.24" z2="13.00" />
+                <class name="cutgen-10" z1=" 981.41" z2="15.07" />
+                <class name="cutgen-11" z1=" 191.18" z2="23.79" />
+                <class name="cutgen-12" z1="1890.14" z2="28.59" />
+                <class name="cutgen-13" z1="  65.39" z2=" 7.92" />
+                <class name="cutgen-14" z1=" 648.02" z2=" 8.73" />
+                <class name="cutgen-15" z1=" 124.81" z2="14.82" />
+                <class name="cutgen-16" z1="1243.88" z2="16.38" />
+                <class name="cutgen-17" z1=" 241.56" z2="27.25" />
+                <class name="cutgen-18" z1="2407.99" z2="29.99" />
+            </setup>
+        </source>
+        <source cite="moretti08">
+            <setup>
+                <class name="cutgen-01" z1="  14.84" z2=" 3.01" />
+                <class name="cutgen-02" z1=" 119.62" z2=" 4.76" />
+                <class name="cutgen-03" z1="  24.26" z2=" 4.91" />
+                <class name="cutgen-04" z1=" 223.91" z2=" 7.16" />
+                <class name="cutgen-05" z1="  45.96" z2=" 7.04" />
+                <class name="cutgen-06" z1=" 433.29" z2="10.84" />
+                <class name="cutgen-07" z1="  53.69" z2=" 5.31" />
+                <class name="cutgen-08" z1=" 488.85" z2=" 6.97" />
+                <class name="cutgen-09" z1=" 105.65" z2="10.92" />
+                <class name="cutgen-10" z1=" 932.67" z2="12.80" />
+                <class name="cutgen-11" z1=" 216.67" z2="21.12" />
+                <class name="cutgen-12" z1="1839.63" z2="25.25" />
+                <class name="cutgen-13" z1="  66.77" z2=" 6.31" />
+                <class name="cutgen-14" z1=" 639.88" z2=" 7.89" />
+                <class name="cutgen-15" z1=" 123.93" z2="11.13" />
+                <class name="cutgen-16" z1="1169.12" z2="14.44" />
+                <class name="cutgen-17" z1=" 262.07" z2="21.96" />
+                <class name="cutgen-18" z1="2247.11" z2="26.03" />
+            </setup>
+        </source>
+        <source cite="cerqueira09">
+            <setup>
+                <class name="cutgen-01" z1="  11.58" z2=" 3.36" />
+                <class name="cutgen-02" z1=" 111.85" z2=" 5.30" />
+                <class name="cutgen-03" z1="  22.20" z2=" 5.22" />
+                <class name="cutgen-04" z1=" 217.73" z2=" 8.04" />
+                <class name="cutgen-05" z1="  43.06" z2=" 7.69" />
+                <class name="cutgen-06" z1=" 427.40" z2="12.79" />
+                <class name="cutgen-07" z1="  51.68" z2=" 7.63" />
+                <class name="cutgen-08" z1=" 516.44" z2=" 9.82" />
+                <class name="cutgen-09" z1="  98.04" z2="13.41" />
+                <class name="cutgen-10" z1=" 990.04" z2="17.44" />
+                <class name="cutgen-11" z1=" 185.77" z2="24.25" />
+                <class name="cutgen-12" z1="1841.55" z2="31.92" />
+                <class name="cutgen-13" z1="  64.33" z2=" 8.86" />
+                <class name="cutgen-14" z1=" 638.89" z2="10.46" />
+                <class name="cutgen-15" z1=" 123.36" z2="16.21" />
+                <class name="cutgen-16" z1="1226.89" z2="19.52" />
+                <class name="cutgen-17" z1=" 235.51" z2="29.36" />
+                <class name="cutgen-18" z1="2374.40" z2="35.77" />
+            </setup>
+            <setup>
+                <class name="cutgen-01" z1="  11.58" z2=" 3.36" />
+                <class name="cutgen-02" z1=" 111.88" z2=" 5.28" />
+                <class name="cutgen-03" z1="  22.27" z2=" 5.10" />
+                <class name="cutgen-04" z1=" 218.01" z2=" 7.95" />
+                <class name="cutgen-05" z1="  43.15" z2=" 8.29" />
+                <class name="cutgen-06" z1=" 428.31" z2="12.64" />
+                <class name="cutgen-07" z1="  52.24" z2=" 7.56" />
+                <class name="cutgen-08" z1=" 519.84" z2=" 9.75" />
+                <class name="cutgen-09" z1="  99.41" z2="13.36" />
+                <class name="cutgen-10" z1="1002.31" z2="17.14" />
+                <class name="cutgen-11" z1=" 191.45" z2="23.35" />
+                <class name="cutgen-12" z1="1942.35" z2="30.06" />
+                <class name="cutgen-13" z1="  65.37" z2=" 8.72" />
+                <class name="cutgen-14" z1=" 656.44" z2="10.61" />
+                <class name="cutgen-15" z1=" 126.18" z2="15.76" />
+                <class name="cutgen-16" z1="1271.14" z2="19.40" />
+                <class name="cutgen-17" z1=" 241.46" z2="28.11" />
+                <class name="cutgen-18" z1="2459.86" z2="35.65" />
+            </setup>
+            <setup>
+                <class name="cutgen-01" z1="  11.58" z2=" 3.26" />
+                <class name="cutgen-02" z1=" 111.82" z2=" 5.41" />
+                <class name="cutgen-03" z1="  22.27" z2=" 5.36" />
+                <class name="cutgen-04" z1=" 218.17" z2=" 7.90" />
+                <class name="cutgen-05" z1="  43.19" z2=" 8.16" />
+                <class name="cutgen-06" z1=" 428.41" z2="12.34" />
+                <class name="cutgen-07" z1="  51.80" z2=" 7.68" />
+                <class name="cutgen-08" z1=" 520.00" z2=" 9.77" />
+                <class name="cutgen-09" z1="  99.08" z2="13.52" />
+                <class name="cutgen-10" z1="1003.03" z2="17.16" />
+                <class name="cutgen-11" z1=" 190.91" z2="23.55" />
+                <class name="cutgen-12" z1="1944.66" z2="29.99" />
+                <class name="cutgen-13" z1="  65.28" z2=" 8.80" />
+                <class name="cutgen-14" z1=" 652.23" z2="10.58" />
+                <class name="cutgen-15" z1=" 125.84" z2="15.73" />
+                <class name="cutgen-16" z1="1270.76" z2="19.51" />
+                <class name="cutgen-17" z1=" 241.34" z2="28.09" />
+                <class name="cutgen-18" z1="2458.71" z2="37.41" />
+            </setup>
+        </source>
+        <source cite="golfeto09a">
+            <setup>
+                <class name="cutgen-01" z1="  12.59" z2=" 3.09" />
+                <class name="cutgen-02" z1=" 115.17" z2=" 6.11" />
+                <class name="cutgen-03" z1="  25.96" z2=" 5.74" />
+                <class name="cutgen-04" z1=" 235.93" z2="10.59" />
+                <class name="cutgen-05" z1="  57.17" z2=" 9.89" />
+                <class name="cutgen-06" z1=" 472.95" z2="30.07" />
+                <class name="cutgen-07" z1="  51.58" z2=" 6.36" />
+                <class name="cutgen-08" z1=" 510.50" z2=" 8.51" />
+                <class name="cutgen-09" z1="  99.36" z2="10.94" />
+                <class name="cutgen-10" z1=" 970.57" z2="16.70" />
+                <class name="cutgen-11" z1=" 198.26" z2="23.04" />
+                <class name="cutgen-12" z1="1932.16" z2="32.93" />
+                <class name="cutgen-13" z1="  65.23" z2=" 7.28" />
+                <class name="cutgen-14" z1=" 646.77" z2=" 8.62" />
+                <class name="cutgen-15" z1=" 127.39" z2="13.66" />
+                <class name="cutgen-16" z1="1254.69" z2="16.68" />
+                <class name="cutgen-17" z1=" 244.49" z2="27.22" />
+                <class name="cutgen-18" z1="2414.07" z2="32.70" />
+            </setup>
+            <setup>
+                <class name="cutgen-01" z1="  14.49" z2=" 2.02" />
+                <class name="cutgen-02" z1=" 116.26" z2=" 5.28" />
+                <class name="cutgen-03" z1="  27.43" z2=" 4.80" />
+                <class name="cutgen-04" z1=" 236.89" z2=" 9.86" />
+                <class name="cutgen-05" z1="  60.85" z2=" 8.44" />
+                <class name="cutgen-06" z1=" 518.81" z2="14.16" />
+                <class name="cutgen-07" z1="  53.04" z2=" 5.48" />
+                <class name="cutgen-08" z1=" 512.92" z2=" 8.16" />
+                <class name="cutgen-09" z1="  99.41" z2="10.47" />
+                <class name="cutgen-10" z1=" 975.56" z2="16.28" />
+                <class name="cutgen-11" z1=" 201.43" z2="22.24" />
+                <class name="cutgen-12" z1="1932.79" z2="31.74" />
+                <class name="cutgen-13" z1="  66.51" z2=" 6.70" />
+                <class name="cutgen-14" z1=" 646.31" z2=" 8.30" />
+                <class name="cutgen-15" z1=" 128.43" z2="13.18" />
+                <class name="cutgen-16" z1="1253.79" z2="16.57" />
+                <class name="cutgen-17" z1=" 248.67" z2="25.82" />
+                <class name="cutgen-18" z1="2419.34" z2="32.03" />
+            </setup>
+            <setup>
+                <class name="cutgen-01" z1="  14.84" z2=" 1.85" />
+                <class name="cutgen-02" z1=" 117.80" z2=" 4.68" />
+                <class name="cutgen-03" z1="  28.23" z2=" 4.47" />
+                <class name="cutgen-04" z1=" 239.72" z2=" 9.36" />
+                <class name="cutgen-05" z1="  61.42" z2=" 8.23" />
+                <class name="cutgen-06" z1=" 518.85" z2="14.08" />
+                <class name="cutgen-07" z1="  53.75" z2=" 5.21" />
+                <class name="cutgen-08" z1=" 514.65" z2=" 7.76" />
+                <class name="cutgen-09" z1=" 100.10" z2="10.16" />
+                <class name="cutgen-10" z1=" 975.72" z2="16.04" />
+                <class name="cutgen-11" z1=" 201.44" z2="21.56" />
+                <class name="cutgen-12" z1="1917.40" z2="31.52" />
+                <class name="cutgen-13" z1="  67.32" z2=" 6.68" />
+                <class name="cutgen-14" z1=" 650.52" z2=" 8.21" />
+                <class name="cutgen-15" z1=" 128.87" z2="12.99" />
+                <class name="cutgen-16" z1="1251.90" z2="16.34" />
+                <class name="cutgen-17" z1=" 247.62" z2="25.62" />
+                <class name="cutgen-18" z1="2422.41" z2="32.18" />
+            </setup>
+        </source>
+        <source cite="cui12">
+            <setup>
+                <class name="cutgen-01" z1="  11.5" z2=" 3.5" />
+                <class name="cutgen-02" z1=" 110.3" z2=" 6.1" />
+                <class name="cutgen-03" z1="  22.1" z2=" 5.2" />
+                <class name="cutgen-04" z1=" 215.9" z2=" 8.5" />
+                <class name="cutgen-05" z1="  43.0" z2=" 7.8" />
+                <class name="cutgen-06" z1=" 425.3" z2="12.4" />
+                <class name="cutgen-07" z1="  50.2" z2=" 8.2" />
+                <class name="cutgen-08" z1=" 499.7" z2=" 9.7" />
+                <class name="cutgen-09" z1="  93.7" z2="14.5" />
+                <class name="cutgen-10" z1=" 932.8" z2="18.3" />
+                <class name="cutgen-11" z1=" 177.2" z2="26.3" />
+                <class name="cutgen-12" z1="1765.9" z2="34.3" />
+                <class name="cutgen-13" z1="  63.5" z2=" 9.2" />
+                <class name="cutgen-14" z1=" 632.4" z2="10.3" />
+                <class name="cutgen-15" z1=" 119.6" z2="17.0" />
+                <class name="cutgen-16" z1="1192.1" z2="19.5" />
+                <class name="cutgen-17" z1=" 224.9" z2="30.9" />
+                <class name="cutgen-18" z1="2242.9" z2="36.8" />
+            </setup>
+        </source>
+        <source cite="cui09">
+            <setup z1="trim" units="percents">
+                <class name="cutgen-01" z1=" 4.55" z2=" 3.83" />
+                <class name="cutgen-02" z1=" 0.52" z2=" 6.53" />
+                <class name="cutgen-03" z1=" 2.56" z2=" 5.75" />
+                <class name="cutgen-04" z1=" 0.25" z2=" 9.50" />
+                <class name="cutgen-05" z1=" 1.08" z2=" 8.59" />
+                <class name="cutgen-06" z1=" 0.11" z2="13.76" />
+                <class name="cutgen-07" z1="13.64" z2=" 8.33" />
+                <class name="cutgen-08" z1="13.14" z2=" 9.90" />
+                <class name="cutgen-09" z1=" 9.92" z2="14.90" />
+                <class name="cutgen-10" z1=" 9.63" z2="18.46" />
+                <class name="cutgen-11" z1=" 7.35" z2="27.37" />
+                <class name="cutgen-12" z1=" 7.12" z2="34.45" />
+                <class name="cutgen-13" z1="17.49" z2=" 9.20" />
+                <class name="cutgen-14" z1="17.15" z2="10.36" />
+                <class name="cutgen-15" z1="13.83" z2="16.93" />
+                <class name="cutgen-16" z1="13.60" z2="19.51" />
+                <class name="cutgen-17" z1="10.22" z2="30.78" />
+                <class name="cutgen-18" z1="10.08" z2="36.69" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.68" z2=" 8.27" />
+                <class name="cutgen-08" z1="13.24" z2=" 9.81" />
+                <class name="cutgen-09" z1=" 9.93" z2="14.94" />
+                <class name="cutgen-10" z1=" 9.62" z2="18.53" />
+                <class name="cutgen-11" z1=" 7.39" z2="27.55" />
+                <class name="cutgen-12" z1=" 7.22" z2="34.34" />
+                <class name="cutgen-13" z1="17.54" z2=" 9.21" />
+                <class name="cutgen-14" z1="17.24" z2="10.35" />
+                <class name="cutgen-15" z1="13.93" z2="16.89" />
+                <class name="cutgen-16" z1="13.69" z2="19.50" />
+                <class name="cutgen-17" z1="10.66" z2="31.11" />
+                <class name="cutgen-18" z1="10.49" z2="36.78" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.64" z2=" 8.33" />
+                <class name="cutgen-08" z1="13.14" z2=" 9.90" />
+                <class name="cutgen-09" z1=" 9.92" z2="14.90" />
+                <class name="cutgen-10" z1=" 9.63" z2="18.46" />
+                <class name="cutgen-11" z1=" 7.35" z2="27.37" />
+                <class name="cutgen-12" z1=" 7.12" z2="34.45" />
+                <class name="cutgen-13" z1="17.49" z2=" 9.20" />
+                <class name="cutgen-14" z1="17.15" z2="10.36" />
+                <class name="cutgen-15" z1="13.83" z2="16.93" />
+                <class name="cutgen-16" z1="13.60" z2="19.51" />
+                <class name="cutgen-17" z1="10.22" z2="30.78" />
+                <class name="cutgen-18" z1="10.08" z2="36.69" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.64" z2=" 8.37" />
+                <class name="cutgen-08" z1="13.06" z2=" 9.91" />
+                <class name="cutgen-09" z1=" 9.96" z2="14.85" />
+                <class name="cutgen-10" z1=" 9.55" z2="18.52" />
+                <class name="cutgen-11" z1=" 7.18" z2="27.36" />
+                <class name="cutgen-12" z1=" 7.09" z2="34.22" />
+                <class name="cutgen-13" z1="17.48" z2=" 9.23" />
+                <class name="cutgen-14" z1="17.15" z2="10.39" />
+                <class name="cutgen-15" z1="13.81" z2="17.12" />
+                <class name="cutgen-16" z1="13.60" z2="19.57" />
+                <class name="cutgen-17" z1="10.12" z2="31.24" />
+                <class name="cutgen-18" z1="10.00" z2="36.85" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.72" z2=" 8.33" />
+                <class name="cutgen-08" z1="13.14" z2=" 9.85" />
+                <class name="cutgen-09" z1=" 9.98" z2="14.97" />
+                <class name="cutgen-10" z1=" 9.63" z2="18.46" />
+                <class name="cutgen-11" z1=" 7.48" z2="27.13" />
+                <class name="cutgen-12" z1=" 7.32" z2="33.97" />
+                <class name="cutgen-13" z1="17.56" z2=" 9.21" />
+                <class name="cutgen-14" z1="17.21" z2="10.38" />
+                <class name="cutgen-15" z1="13.95" z2="17.06" />
+                <class name="cutgen-16" z1="13.69" z2="19.56" />
+                <class name="cutgen-17" z1="10.39" z2="30.97" />
+                <class name="cutgen-18" z1="10.02" z2="36.92" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.88" z2=" 8.44" />
+                <class name="cutgen-08" z1="13.42" z2=" 9.85" />
+                <class name="cutgen-09" z1="10.52" z2="15.00" />
+                <class name="cutgen-10" z1="10.06" z2="18.42" />
+                <class name="cutgen-11" z1=" 8.25" z2="26.69" />
+                <class name="cutgen-12" z1=" 7.98" z2="33.52" />
+                <class name="cutgen-13" z1="17.63" z2=" 9.19" />
+                <class name="cutgen-14" z1="17.27" z2="10.38" />
+                <class name="cutgen-15" z1="14.30" z2="16.89" />
+                <class name="cutgen-16" z1="13.96" z2="19.40" />
+                <class name="cutgen-17" z1="10.89" z2="30.80" />
+                <class name="cutgen-18" z1="10.60" z2="36.59" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="14.03" z2=" 8.35" />
+                <class name="cutgen-08" z1="13.52" z2=" 9.75" />
+                <class name="cutgen-09" z1="11.00" z2="14.71" />
+                <class name="cutgen-10" z1="10.46" z2="18.40" />
+                <class name="cutgen-11" z1=" 9.04" z2="26.70" />
+                <class name="cutgen-12" z1=" 8.52" z2="33.70" />
+                <class name="cutgen-13" z1="17.59" z2=" 9.16" />
+                <class name="cutgen-14" z1="17.31" z2="10.40" />
+                <class name="cutgen-15" z1="14.39" z2="16.79" />
+                <class name="cutgen-16" z1="14.08" z2="19.42" />
+                <class name="cutgen-17" z1="11.44" z2="30.94" />
+                <class name="cutgen-18" z1="11.11" z2="36.48" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="14.03" z2=" 8.35" />
+                <class name="cutgen-08" z1="13.52" z2=" 9.75" />
+                <class name="cutgen-09" z1="11.00" z2="14.71" />
+                <class name="cutgen-10" z1="10.46" z2="18.40" />
+                <class name="cutgen-11" z1=" 9.04" z2="26.70" />
+                <class name="cutgen-12" z1=" 8.52" z2="33.70" />
+                <class name="cutgen-13" z1="17.59" z2=" 9.16" />
+                <class name="cutgen-14" z1="17.31" z2="10.40" />
+                <class name="cutgen-15" z1="14.59" z2="16.79" />
+                <class name="cutgen-16" z1="14.08" z2="19.42" />
+                <class name="cutgen-17" z1="11.44" z2="30.94" />
+                <class name="cutgen-18" z1="11.11" z2="36.48" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.72" z2=" 8.27" />
+                <class name="cutgen-08" z1="13.18" z2=" 9.84" />
+                <class name="cutgen-09" z1="10.13" z2="14.91" />
+                <class name="cutgen-10" z1=" 9.80" z2="18.50" />
+                <class name="cutgen-11" z1=" 7.74" z2="27.42" />
+                <class name="cutgen-12" z1=" 7.34" z2="34.50" />
+                <class name="cutgen-13" z1="17.61" z2=" 9.13" />
+                <class name="cutgen-14" z1="17.32" z2="10.40" />
+                <class name="cutgen-15" z1="14.09" z2="16.85" />
+                <class name="cutgen-16" z1="13.74" z2="19.53" />
+                <class name="cutgen-17" z1="10.57" z2="30.93" />
+                <class name="cutgen-18" z1="10.39" z2="36.78" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.64" z2=" 8.33" />
+                <class name="cutgen-08" z1="13.14" z2=" 9.90" />
+                <class name="cutgen-09" z1=" 9.92" z2="14.90" />
+                <class name="cutgen-10" z1=" 9.63" z2="18.46" />
+                <class name="cutgen-11" z1=" 7.35" z2="27.37" />
+                <class name="cutgen-12" z1=" 7.12" z2="34.45" />
+                <class name="cutgen-13" z1="17.49" z2=" 9.20" />
+                <class name="cutgen-14" z1="17.15" z2="10.36" />
+                <class name="cutgen-15" z1="13.83" z2="16.93" />
+                <class name="cutgen-16" z1="13.60" z2="19.51" />
+                <class name="cutgen-17" z1="10.22" z2="30.78" />
+                <class name="cutgen-18" z1="10.08" z2="36.69" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.64" z2=" 8.33" />
+                <class name="cutgen-08" z1="13.12" z2=" 9.96" />
+                <class name="cutgen-09" z1=" 9.92" z2="14.87" />
+                <class name="cutgen-10" z1=" 9.55" z2="18.45" />
+                <class name="cutgen-11" z1=" 7.27" z2="27.26" />
+                <class name="cutgen-12" z1=" 7.08" z2="34.11" />
+                <class name="cutgen-13" z1="17.44" z2=" 9.25" />
+                <class name="cutgen-14" z1="17.15" z2="10.34" />
+                <class name="cutgen-15" z1="13.84" z2="17.08" />
+                <class name="cutgen-16" z1="13.62" z2="19.54" />
+                <class name="cutgen-17" z1="10.16" z2="31.14" />
+                <class name="cutgen-18" z1="10.05" z2="36.74" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.63" z2=" 8.39" />
+                <class name="cutgen-08" z1="13.12" z2=" 9.94" />
+                <class name="cutgen-09" z1=" 9.94" z2="14.78" />
+                <class name="cutgen-10" z1=" 9.55" z2="18.47" />
+                <class name="cutgen-11" z1=" 7.23" z2="27.04" />
+                <class name="cutgen-12" z1=" 7.05" z2="34.07" />
+                <class name="cutgen-13" z1="17.44" z2=" 9.29" />
+                <class name="cutgen-14" z1="17.15" z2="10.33" />
+                <class name="cutgen-15" z1="13.89" z2="17.15" />
+                <class name="cutgen-16" z1="13.64" z2="19.58" />
+                <class name="cutgen-17" z1="10.18" z2="31.33" />
+                <class name="cutgen-18" z1="10.09" z2="36.74" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.65" z2=" 8.36" />
+                <class name="cutgen-08" z1="13.14" z2=" 9.99" />
+                <class name="cutgen-09" z1=" 9.93" z2="14.97" />
+                <class name="cutgen-10" z1=" 9.57" z2="18.55" />
+                <class name="cutgen-11" z1=" 7.27" z2="26.97" />
+                <class name="cutgen-12" z1=" 7.06" z2="34.06" />
+                <class name="cutgen-13" z1="17.48" z2=" 9.34" />
+                <class name="cutgen-14" z1="17.19" z2="10.36" />
+                <class name="cutgen-15" z1="13.90" z2="17.19" />
+                <class name="cutgen-16" z1="13.66" z2="19.56" />
+                <class name="cutgen-17" z1="10.19" z2="31.27" />
+                <class name="cutgen-18" z1="10.12" z2="36.83" />
+            </setup>
+        </source>
+        <source cite="cui11">
+            <setup z1="trim" units="percents">
+                <class name="cutgen-01" z1=" 4.55" z2=" 3.84" />
+                <class name="cutgen-02" z1=" 0.50" z2=" 6.51" />
+                <class name="cutgen-03" z1=" 2.56" z2=" 5.68" />
+                <class name="cutgen-04" z1=" 0.26" z2=" 9.12" />
+                <class name="cutgen-05" z1=" 1.08" z2=" 8.47" />
+                <class name="cutgen-06" z1=" 0.11" z2="13.34" />
+                <class name="cutgen-07" z1="13.61" z2=" 8.18" />
+                <class name="cutgen-08" z1="13.01" z2=" 9.88" />
+                <class name="cutgen-09" z1=" 9.64" z2="14.71" />
+                <class name="cutgen-10" z1=" 9.34" z2="18.71" />
+                <class name="cutgen-11" z1=" 7.01" z2="25.79" />
+                <class name="cutgen-12" z1=" 6.83" z2="33.66" />
+                <class name="cutgen-13" z1="17.40" z2=" 9.19" />
+                <class name="cutgen-14" z1="17.09" z2="10.36" />
+                <class name="cutgen-15" z1="13.76" z2="16.55" />
+                <class name="cutgen-16" z1="13.54" z2="19.50" />
+                <class name="cutgen-17" z1="10.05" z2="30.18" />
+                <class name="cutgen-18" z1=" 9.91" z2="36.57" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.52" z2=" 8.09" />
+                <class name="cutgen-08" z1="12.94" z2=" 9.76" />
+                <class name="cutgen-09" z1=" 9.58" z2="14.31" />
+                <class name="cutgen-10" z1=" 9.24" z2="18.16" />
+                <class name="cutgen-11" z1=" 6.83" z2="25.82" />
+                <class name="cutgen-12" z1=" 6.60" z2="34.02" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.55" z2=" 8.39" />
+                <class name="cutgen-08" z1="12.95" z2="10.04" />
+                <class name="cutgen-09" z1=" 9.59" z2="15.11" />
+                <class name="cutgen-10" z1=" 9.31" z2="19.13" />
+                <class name="cutgen-11" z1=" 6.88" z2="27.90" />
+                <class name="cutgen-12" z1=" 6.72" z2="36.10" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-07" z1="13.52" z2=" 8.19" />
+                <class name="cutgen-08" z1="12.96" z2=" 9.88" />
+                <class name="cutgen-09" z1=" 9.67" z2="14.62" />
+                <class name="cutgen-10" z1=" 9.32" z2="18.46" />
+                <class name="cutgen-11" z1=" 7.01" z2="26.72" />
+                <class name="cutgen-12" z1=" 6.75" z2="34.16" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-05" z1="1.03" z2=" 7.86" />
+                <class name="cutgen-06" z1="0.11" z2="12.66" />
+                <class name="cutgen-11" z1="6.85" z2="25.68" />
+                <class name="cutgen-12" z1="6.68" z2="33.78" />
+                <class name="cutgen-17" z1="9.63" z2="30.44" />
+                <class name="cutgen-18" z1="9.74" z2="36.62" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-05" z1="1.03" z2=" 7.86" />
+                <class name="cutgen-06" z1="0.11" z2="12.66" />
+                <class name="cutgen-11" z1="6.85" z2="25.60" />
+                <class name="cutgen-12" z1="6.68" z2="33.78" />
+                <class name="cutgen-17" z1="9.63" z2="30.44" />
+                <class name="cutgen-18" z1="9.74" z2="36.62" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-05" z1="1.03" z2=" 7.86" />
+                <class name="cutgen-06" z1="0.11" z2="12.66" />
+                <class name="cutgen-11" z1="6.84" z2="25.76" />
+                <class name="cutgen-12" z1="6.67" z2="33.78" />
+                <class name="cutgen-17" z1="9.63" z2="30.38" />
+                <class name="cutgen-18" z1="9.73" z2="36.48" />
+            </setup>
+            <setup z1="trim" units="percents">
+                <class name="cutgen-05" z1="1.03" z2=" 7.86" />
+                <class name="cutgen-06" z1="0.11" z2="12.66" />
+                <class name="cutgen-11" z1="6.85" z2="25.04" />
+                <class name="cutgen-12" z1="6.67" z2="33.70" />
+                <class name="cutgen-17" z1="9.63" z2="29.76" />
+                <class name="cutgen-18" z1="9.73" z2="36.08" />
+            </setup>
+        </source>
+    </sources>
+</data>

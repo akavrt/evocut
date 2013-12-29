@@ -12,14 +12,14 @@ import java.awt.event.KeyEvent;
  * Date: 09.04.13
  * Time: 14:46
  */
-public class MainToolBar extends JToolBar {
+public class LoadToolBar extends JToolBar {
     private final OnActionPerformedListener listener;
     private JProgressBar progressBar;
     private AbstractAction clearAction;
     private AbstractAction startAction;
     private AbstractAction stopAction;
 
-    public MainToolBar(OnActionPerformedListener listener) {
+    public LoadToolBar(OnActionPerformedListener listener) {
         this.listener = listener;
         setFloatable(false);
         setRollover(true);

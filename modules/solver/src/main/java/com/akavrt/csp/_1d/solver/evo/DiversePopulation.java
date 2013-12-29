@@ -1,6 +1,7 @@
 package com.akavrt.csp._1d.solver.evo;
 
 import com.akavrt.csp._1d.core.Plan;
+import com.akavrt.csp._1d.metrics.ContextMetricProvider;
 import com.akavrt.csp._1d.metrics.Metric;
 import com.akavrt.csp._1d.solver.Algorithm;
 import com.akavrt.csp._1d.solver.ExecutionContext;
@@ -17,7 +18,7 @@ import java.util.List;
  * Date: 27.04.13
  * Time: 01:09
  */
-public abstract class DiversePopulation implements Population {
+public abstract class DiversePopulation implements Population, ContextMetricProvider {
     private static final Logger LOGGER = LogManager.getLogger(DiversePopulation.class);
     protected final List<Plan> chromosomes;
     private final ExecutionContext context;
@@ -34,6 +35,7 @@ public abstract class DiversePopulation implements Population {
         chromosomes = Lists.newArrayList();
         dm = new DiversityManager();
 
+        objectiveFunction.setContextMetricProvider(this);
         comparator = objectiveFunction.getReverseComparator();
     }
 
@@ -138,4 +140,8 @@ public abstract class DiversePopulation implements Population {
         return dm.getRetryBound();
     }
 
+    @Override
+    public int getMaterialUpperBound() {
+        return dm.getMaterialUpperBound();
+    }
 }

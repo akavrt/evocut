@@ -23,11 +23,11 @@ public class MutableOrder {
     }
 
     public boolean isFulfilled() {
-        return actualDemand >= order.getDemand();
+        return actualDemand >= order.getQuantity();
     }
 
     public int getUnfulfilledDemand() {
-        return isFulfilled() ? 0 : (order.getDemand() - actualDemand);
+        return isFulfilled() ? 0 : (order.getQuantity() - actualDemand);
     }
 
 }

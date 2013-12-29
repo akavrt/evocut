@@ -1,6 +1,7 @@
 package com.akavrt.csp._1d.metrics;
 
 import com.akavrt.csp._1d.core.Plan;
+import com.akavrt.csp._1d.utils.ParameterSet;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,4 +37,13 @@ public abstract class MinimizationMetric implements Metric {
         return Collections.reverseOrder(getComparator());
     }
 
+    @Override
+    public void setContextMetricProvider(ContextMetricProvider provider) {
+        // unused
+    }
+
+    @Override
+    public ParameterSet getParameters() {
+        return null;
+    }
 }

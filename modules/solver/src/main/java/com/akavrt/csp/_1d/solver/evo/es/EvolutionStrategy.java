@@ -70,6 +70,12 @@ public class EvolutionStrategy extends EvolutionaryAlgorithm {
         parameters.setDescription("Parameters of the master method.");
         params.add(parameters);
 
+        ParameterSet ofParameters = objectiveFunction.getParameters();
+        if (ofParameters != null) {
+            ofParameters.setDescription("Parameters of the objective function.");
+            params.add(ofParameters);
+        }
+
         for (ParameterSet parameterSet : getInitializationProcedure().getParameters()) {
             parameterSet.setDescription("Parameters of the initialization procedure.");
             params.add(parameterSet);

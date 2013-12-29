@@ -56,7 +56,7 @@ public class UnconstrainedPatternGenerator implements PatternGenerator {
     public void initialize(Problem problem) {
         lengths = new int[problem.size()];
         for (int i = 0; i < problem.size(); i++) {
-            lengths[i] = problem.getOrder(i).getLength();
+            lengths[i] = problem.getOrder(i).getWidth();
         }
 
         currPattern = new int[lengths.length];

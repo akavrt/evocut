@@ -6,24 +6,24 @@ package com.akavrt.csp._1d.core;
  * Time: 16:56
  */
 public class Order {
-    private int length;
-    private int demand;
+    private int width;
+    private int quantity;
 
-    public Order(int length, int demand) {
-        this.length = length;
-        this.demand = demand;
+    public Order(int width, int quantity) {
+        this.width = width;
+        this.quantity = quantity;
     }
 
-    public int getLength() {
-        return length;
+    public int getWidth() {
+        return width;
     }
 
-    public int getDemand() {
-        return demand;
+    public int getQuantity() {
+        return quantity;
     }
 
     public boolean isValid() {
-        return length > 0 && demand > 0;
+        return width > 0 && quantity > 0;
     }
 
 }

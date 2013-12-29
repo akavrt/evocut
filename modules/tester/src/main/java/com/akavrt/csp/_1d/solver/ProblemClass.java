@@ -131,5 +131,4 @@ public class ProblemClass implements XmlCompatible {
         String DESCRIPTION = "description";
         String DESCRIPTORS = "descriptors";
     }
-
 }

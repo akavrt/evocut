@@ -1,6 +1,7 @@
 package com.akavrt.csp._1d.metrics;
 
 import com.akavrt.csp._1d.core.Plan;
+import com.akavrt.csp._1d.utils.ParameterSet;
 
 import java.util.Comparator;
 
@@ -16,4 +17,6 @@ public interface Metric {
     String name();
     Comparator<Plan> getComparator();
     Comparator<Plan> getReverseComparator();
+    void setContextMetricProvider(ContextMetricProvider provider);
+    ParameterSet getParameters();
 }

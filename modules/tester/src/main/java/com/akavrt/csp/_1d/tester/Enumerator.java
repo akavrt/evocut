@@ -37,17 +37,17 @@ public class Enumerator {
         Collections.sort(orders, new Comparator<Order>() {
             @Override
             public int compare(Order lhs, Order rhs) {
-                return lhs.getLength() == rhs.getLength()
+                return lhs.getWidth() == rhs.getWidth()
                         ? 0
-                        : (lhs.getLength() > rhs.getLength() ? -1 : 1);
+                        : (lhs.getWidth() > rhs.getWidth() ? -1 : 1);
             }
         });
 
         lengths = new int[orders.size()];
         demands = new int[orders.size()];
         for (int i = 0; i < orders.size(); i++) {
-            lengths[i] = orders.get(i).getLength();
-            demands[i] = orders.get(i).getDemand();
+            lengths[i] = orders.get(i).getWidth();
+            demands[i] = orders.get(i).getQuantity();
         }
 
         minOrderLength = lengths[lengths.length - 1];

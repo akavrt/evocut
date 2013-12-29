@@ -53,11 +53,11 @@ public class ProblemTableModel extends AbstractTableModel {
                 break;
 
             case LENGTH_INDEX:
-                holder = problem.getOrder(rowIndex).getLength();
+                holder = problem.getOrder(rowIndex).getWidth();
                 break;
 
             case DEMAND_INDEX:
-                holder = problem.getOrder(rowIndex).getDemand();
+                holder = problem.getOrder(rowIndex).getQuantity();
                 break;
         }
 

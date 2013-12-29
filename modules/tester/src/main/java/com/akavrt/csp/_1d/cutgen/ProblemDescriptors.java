@@ -177,5 +177,4 @@ public class ProblemDescriptors implements XmlCompatible {
         String ORDER_LENGTH_UPPER_BOUND = "order-length-ub";
         String AVERAGE_DEMAND = "average-demand";
     }
-
 }

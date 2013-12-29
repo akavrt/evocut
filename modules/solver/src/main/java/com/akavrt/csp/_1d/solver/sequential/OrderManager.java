@@ -40,7 +40,7 @@ public class OrderManager {
 
         int patternLength = 0;
         for (int i = 0; i < problem.size(); i++) {
-            patternLength += pattern[i] * problem.getOrder(i).getLength();
+            patternLength += pattern[i] * problem.getOrder(i).getWidth();
         }
 
         return patternLength;

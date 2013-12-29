@@ -49,7 +49,7 @@ public class Problem {
 
         Order existing = null;
         for (int i = 0; i < orders.size(); i++) {
-            if (orders.get(i).getLength() == order.getLength()) {
+            if (orders.get(i).getWidth() == order.getWidth()) {
                 existing = orders.remove(i);
                 break;
             }
@@ -57,7 +57,7 @@ public class Problem {
 
         // sum up demands for two orders with equal length
         if (existing != null) {
-            order = new Order(order.getLength(), order.getDemand() + existing.getDemand());
+            order = new Order(order.getWidth(), order.getQuantity() + existing.getQuantity());
         }
 
         orders.add(order);
@@ -66,7 +66,7 @@ public class Problem {
     private int calculateTotalOrderLength() {
         int result = 0;
         for (Order order : orders) {
-            result += order.getLength() * order.getDemand();
+            result += order.getWidth() * order.getQuantity();
         }
 
         return result;
@@ -85,12 +85,12 @@ public class Problem {
         int maxLength = 0;
         int maxDemand = 0;
         for (Order order : orders) {
-            if (maxLength == 0 || maxLength < order.getLength()) {
-                maxLength = order.getLength();
+            if (maxLength == 0 || maxLength < order.getWidth()) {
+                maxLength = order.getWidth();
             }
 
-            if (maxDemand == 0 || maxDemand < order.getDemand()) {
-                maxDemand = order.getDemand();
+            if (maxDemand == 0 || maxDemand < order.getQuantity()) {
+                maxDemand = order.getQuantity();
             }
         }
 
@@ -107,7 +107,7 @@ public class Problem {
         builder.append("\n  ORDERS, (l_i  x  d_i):");
         for (int i = 0; i < orders.size(); i++) {
             Order order = orders.get(i);
-            builder.append(String.format(format, i + 1, order.getLength(), order.getDemand()));
+            builder.append(String.format(format, i + 1, order.getWidth(), order.getQuantity()));
         }
 
         return builder.toString();

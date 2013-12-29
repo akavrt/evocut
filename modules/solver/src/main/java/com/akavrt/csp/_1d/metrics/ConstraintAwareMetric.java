@@ -1,6 +1,7 @@
 package com.akavrt.csp._1d.metrics;
 
 import com.akavrt.csp._1d.core.Plan;
+import com.akavrt.csp._1d.utils.ParameterSet;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,6 +13,7 @@ import java.util.Comparator;
  */
 public class ConstraintAwareMetric implements Metric {
     private final ConstraintAwareMetricParameters params;
+    private ContextMetricProvider provider;
 
     public ConstraintAwareMetric() {
         this(new ConstraintAwareMetricParameters());
@@ -25,6 +27,22 @@ public class ConstraintAwareMetric implements Metric {
     public double evaluate(Plan plan) {
         return params.getAggregatedTrimFactor() * plan.getMaterialWasteRatio()
                 + params.getPatternsFactor() * plan.getPatternReductionRatio();
+//                + params.getPatternsFactor() * improvedPatternReductionRatio(plan);
+    }
+
+    private double improvedPatternReductionRatio(Plan plan) {
+        int upperBound = provider == null ? 0 : provider.getMaterialUpperBound();
+        int size = plan.getMaterialUsage();
+        if (size > upperBound) {
+            upperBound = size;
+        }
+
+        double result = 0;
+        if (upperBound > 1) {
+            result = (plan.getSetups() - 1) / (double) (upperBound - 1);
+        }
+
+        return result;
     }
 
     @Override
@@ -78,4 +96,13 @@ public class ConstraintAwareMetric implements Metric {
         return "Constraint aware parameter-less metric";
     }
 
+    @Override
+    public void setContextMetricProvider(ContextMetricProvider provider) {
+        this.provider = provider;
+    }
+
+    @Override
+    public ParameterSet getParameters() {
+        return params;
+    }
 }

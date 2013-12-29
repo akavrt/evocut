@@ -8,7 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tester</artifactId>
+    <artifactId>analyzer</artifactId>
     <packaging>jar</packaging>
 
     <name>tester</name>
@@ -22,6 +22,12 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>solver</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>tester</artifactId>
             <version>${project.version}</version>
         </dependency>
 

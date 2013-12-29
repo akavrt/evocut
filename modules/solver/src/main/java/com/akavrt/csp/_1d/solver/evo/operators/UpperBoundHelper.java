@@ -24,7 +24,7 @@ public class UpperBoundHelper {
         List<Holder> orders = Lists.newArrayList();
         for (int i = 0; i < demand.length; i++) {
             if (demand[i] > 0) {
-                int length = problem.getOrder(i).getLength();
+                int length = problem.getOrder(i).getWidth();
                 orders.add(new Holder(length, demand[i]));
             }
         }

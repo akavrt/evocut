@@ -126,7 +126,6 @@ public class GraphTracePanel extends JPanel {
 
         chart.setBackgroundPaint(Color.white);
 
-
         setupPlot(chart);
         setupAxes(chart);
         setupLegend(chart);
@@ -190,7 +189,6 @@ public class GraphTracePanel extends JPanel {
         renderer.setSeriesOutlineStroke(3, stroke);
         renderer.setSeriesOutlineStroke(4, stroke);
 
-
         renderer.setSeriesPaint(0, new Color(153, 204, 0));
         renderer.setSeriesPaint(1, new Color(255, 68, 68));
         renderer.setSeriesPaint(2, new Color(51, 181, 229));
@@ -237,5 +235,4 @@ public class GraphTracePanel extends JPanel {
     private Font createAxisLabelFont() {
         return new Font(Font.SANS_SERIF, Font.PLAIN, 12);
     }
-
 }
